@@ -73,6 +73,16 @@
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--white); transform: translateY(-2px); }
     .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
     .nav-links a:active { transform: translateY(0) scale(.97); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown summary { display: flex; align-items: center; gap: .45rem; padding-block: .65rem; color: #d2d2d2; font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; cursor: pointer; list-style: none; transition: color .25s ease, transform .25s ease; }
+    .nav-dropdown summary::-webkit-details-marker { display: none; }
+    .nav-dropdown summary::after { content: "⌄"; font-size: .9rem; line-height: 1; transition: transform .25s ease; }
+    .nav-dropdown[open] summary::after { transform: rotate(180deg); }
+    .nav-dropdown summary:hover, .nav-dropdown summary:focus-visible { color: var(--white); transform: translateY(-2px); }
+    .nav-dropdown-menu { position: absolute; top: calc(100% + .55rem); left: 50%; min-width: 250px; padding: .45rem; background: #090909; border: 1px solid var(--hairline); box-shadow: 0 18px 45px rgba(0,0,0,.48); transform: translateX(-50%); }
+    .nav-dropdown-menu a { display: block; padding: .8rem .9rem; border-bottom: 1px solid var(--hairline); font-size: .76rem; white-space: nowrap; }
+    .nav-dropdown-menu a:last-child { border-bottom: 0; }
+    .nav-dropdown-menu a::after { display: none; }
     .menu-btn { display: none; width: 48px; height: 48px; border: 1px solid transparent; color: var(--white); background: transparent; cursor: pointer; transition: background .25s ease, border-color .25s ease, transform .2s ease; }
     .menu-btn span { display: block; width: 23px; height: 1px; margin: 6px auto; background: currentColor; transition: transform .2s, opacity .2s; }
     .menu-btn:hover, .menu-btn:focus-visible { background: var(--card); border-color: var(--hairline); }
@@ -266,6 +276,10 @@
       .nav-links { position: fixed; inset: 64px 0 auto; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 1.2rem var(--gutter) 2rem; background: #000; border-top: 4px solid transparent; border-image: linear-gradient(90deg,var(--blue-light) 0 33.3%,var(--blue-dark) 33.3% 66.6%,var(--red) 66.6%) 1; }
       .nav-links.open { display: flex; }
       .nav-links a { padding: 1rem 0; border-bottom: 1px solid var(--hairline); font-size: 1rem; }
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown summary { padding: 1rem 0; border-bottom: 1px solid var(--hairline); font-size: 1rem; }
+      .nav-dropdown-menu { position: static; min-width: 0; padding: .25rem 0 .25rem 1rem; background: #080808; border: 0; box-shadow: none; transform: none; }
+      .nav-dropdown-menu a { padding: .8rem 0; font-size: .9rem; }
       .menu-btn[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
       .menu-btn[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
       .section-head { grid-template-columns: 1fr; gap: 20px; }
@@ -310,7 +324,17 @@
       <a class="brand" href="index.html" aria-label="Punith Kumar portfolio home">Punith Kumar</a>
       <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
       <div class="nav-links" id="nav-links">
-        <a href="index.html">Home</a><a href="agent-orchestration-showcase.html" aria-current="page">Orchestration</a>
+        <a href="index.html">Home</a>
+        <details class="nav-dropdown">
+          <summary>Projects</summary>
+          <div class="nav-dropdown-menu">
+            <a href="https://www.behance.net/gallery/245596771/Landing-Page" target="_blank" rel="noreferrer">Customer360.ai</a>
+            <a href="https://www.behance.net/gallery/243355961/Chota-Dhobi" target="_blank" rel="noreferrer">Chota Dhobi</a>
+            <a href="https://www.behance.net/gallery/223475637/Job-Hunt-Mobile-Application" target="_blank" rel="noreferrer">Job Hunt</a>
+            <a href="https://www.behance.net/gallery/218382835/Sustainability-ESG-Platform" target="_blank" rel="noreferrer">ESG Platform</a>
+          </div>
+        </details>
+        <a href="agent-orchestration-showcase.html" aria-current="page">Orchestration</a>
       </div>
     </nav>
   </header>
@@ -537,6 +561,7 @@
     (function () {
       const menuButton = document.querySelector('.menu-btn');
       const nav = document.querySelector('.nav-links');
+      const projectMenu = nav.querySelector('.nav-dropdown');
       menuButton.addEventListener('click', () => {
         const open = menuButton.getAttribute('aria-expanded') === 'true';
         menuButton.setAttribute('aria-expanded', String(!open));
@@ -545,12 +570,18 @@
       nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
         menuButton.setAttribute('aria-expanded', 'false');
         nav.classList.remove('open');
+        projectMenu.removeAttribute('open');
       }));
+      document.addEventListener('click', event => {
+        if (!projectMenu.contains(event.target)) projectMenu.removeAttribute('open');
+      });
       document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && nav.classList.contains('open')) {
+        if (event.key === 'Escape') {
+          const mobileMenuWasOpen = nav.classList.contains('open');
+          projectMenu.removeAttribute('open');
           menuButton.setAttribute('aria-expanded', 'false');
           nav.classList.remove('open');
-          menuButton.focus();
+          if (mobileMenuWasOpen) menuButton.focus();
         }
       });
       document.getElementById('year').textContent = new Date().getFullYear();
