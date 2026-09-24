@@ -256,6 +256,24 @@
     .system-node.human, .system-node.gate { border-color: var(--white); }
     .system-loop { margin-top: 28px; text-align: center; color: var(--strong); font-family: var(--display); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
 
+    .contact { position: relative; padding-block: clamp(6rem, 12vw, 11rem); border-top: 1px solid var(--hairline); scroll-margin-top: 68px; overflow: hidden; }
+    .contact::before { content: "AVAILABLE"; position: absolute; left: 50%; top: clamp(1rem, 4vw, 3.5rem); transform: translateX(-50%); color: rgba(255,255,255,.08); font-family: var(--display); font-size: clamp(3.25rem, 15vw, 13rem); font-weight: 800; line-height: .85; letter-spacing: -.07em; white-space: nowrap; text-align: center; pointer-events: none; }
+    .contact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: end; }
+    .contact h2 { max-width: 9ch; font-size: clamp(3.5rem, 8vw, 8rem); line-height: .88; letter-spacing: -.06em; }
+    .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .contact-button { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 1rem 1.5rem; border: 1px solid var(--white); font-family: var(--display); font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: color .25s ease, transform .25s ease, box-shadow .3s ease; }
+    .contact-button::before { content: ""; position: absolute; z-index: -1; inset: 0; background: var(--white); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.75,.25,1); }
+    .contact-button:hover, .contact-button:focus-visible { color: var(--canvas); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,.35); }
+    .contact-button:hover::before, .contact-button:focus-visible::before { transform: scaleX(1); }
+    .contact-button:active { transform: translateY(0) scale(.975); }
+    .contact-link { position: relative; display: inline-flex; align-items: center; gap: .7rem; padding-block: .8rem; border-bottom: 1px solid rgba(255,255,255,.42); font-family: var(--display); font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; transition: gap .3s ease, transform .25s ease; }
+    .contact-link::before { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, var(--blue-light), var(--blue-dark), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.75,.25,1); }
+    .contact-link::after { content: "↗"; font-size: 1.05rem; transition: transform .3s cubic-bezier(.2,.75,.25,1); }
+    .contact-link:hover, .contact-link:focus-visible { gap: 1rem; transform: translateY(-2px); }
+    .contact-link:hover::before, .contact-link:focus-visible::before { transform: scaleX(1); }
+    .contact-link:hover::after, .contact-link:focus-visible::after { transform: translate(3px,-3px); }
+    .contact-note { margin-top: .6rem; }
+
     .site-footer { border-top: 1px solid var(--hairline); padding-block: 2rem; color: var(--muted); font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; }
     .footer-inner { display: flex; justify-content: space-between; gap: 1rem; }
 
@@ -308,6 +326,8 @@
       .source-model span { transform: rotate(90deg); }
       .trace-legend { grid-template-columns: repeat(2, 1fr); }
       .lifecycle-states { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; align-items: start; }
+      .contact-actions { margin-top: 2rem; }
       .footer-inner { flex-direction: column; }
       .system-node { grid-template-columns: 36px 1fr; }
       .system-node span { grid-column: 2; }
@@ -337,7 +357,7 @@
           </div>
         </details>
         <a href="agent-orchestration-showcase.html" aria-current="page">Orchestration</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
@@ -554,6 +574,17 @@
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">14 / Complete System</p><h2 id="system-title">One operating model, end to end</h2></div><p>The architecture aligns human judgment, specialized agents, reusable execution methods, derived artifacts, and shared state in a controlled UX lifecycle.</p></div>
         <div class="system-diagram"><div class="system-spine"><div class="system-node human"><span>01</span><b>Human / UX Designer</b><span>Evidence · direction · approval</span></div><div class="system-arrow">↓</div><div class="system-node"><span>02</span><b>Input</b><span>Immutable source material</span></div><div class="system-arrow">↓</div><div class="system-node"><span>03</span><b>Project Orchestrator</b><span>Discovery · source mapping · routing</span></div><div class="system-arrow">↓</div><div class="system-node"><span>04</span><b>Agents</b><span>Decide what, when, and which skill</span></div><div class="system-arrow">↓</div><div class="system-node"><span>05</span><b>Skills</b><span>Execute bounded UX work</span></div><div class="system-arrow">↓</div><div class="system-node"><span>06</span><b>Output</b><span>Derived and versioned artifacts</span></div><div class="system-arrow">↓</div><div class="system-node"><span>07</span><b>Project Memory</b><span>Traceability · decisions · state</span></div><div class="system-arrow">↓</div><div class="system-node gate"><span>08</span><b>Approval Gate</b><span>Human review of version and scope</span></div><div class="system-arrow">↓</div><div class="system-node"><span>09</span><b>Next Agent</b><span>Handoff or controlled return</span></div></div><div class="system-loop">UX lifecycle ↺ Evidence-driven iteration</div></div>
+      </div>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div><p class="eyebrow">15 / Contact</p><h2 id="contact-title">Let’s make complex feel simple.</h2></div>
+        <div class="contact-actions">
+          <a class="contact-button" href="mailto:punithravi1@gmail.com">punithravi1@gmail.com</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/punith-uiux/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+          <a class="contact-link" href="https://www.behance.net/punith-UIUX" target="_blank" rel="noreferrer">Follow on Behance</a>
+          <p class="contact-note">Available for freelance and full-time opportunities.</p>
+        </div>
       </div>
     </section>
   </main>
