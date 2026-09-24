@@ -151,16 +151,9 @@
     .agent-skill b { display: block; font-family: var(--display); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
     .agent-skill p { margin-top: 8px; font-size: 12px; line-height: 1.45; }
 
-    .explorer-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-    .filter-button, .reset-button { border: 1px solid var(--hairline); background: transparent; min-height: 48px; padding: 0 18px; font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; cursor: pointer; }
-    .filter-button:hover, .filter-button[aria-pressed="true"], .reset-button:hover { border-color: var(--white); background: var(--white); color: var(--canvas); }
-    .reset-button { margin-left: auto; }
-    .explorer-status { min-height: 24px; margin-bottom: 16px; color: var(--body); }
     .skill-groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .skill-group { border-top: 4px solid var(--hairline); background: var(--soft); padding: 24px; transition: opacity .2s ease, border-color .3s ease, transform .35s cubic-bezier(.2,.75,.25,1), background .3s ease; }
     .skill-group:hover { border-color: var(--white); background: var(--card); transform: translateY(-6px); }
-    .skill-group.is-active { border-color: var(--blue-dark); }
-    .skill-group.is-dimmed { opacity: .28; }
     .skill-group-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 18px; }
     .skill-group h3 { text-transform: uppercase; font-size: 22px; }
     .skill-count { color: var(--muted); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
@@ -318,7 +311,6 @@
       .agent-body .wide { grid-column: auto; }
       .agent-skills { grid-column: auto; }
       .agent-skill-grid { grid-template-columns: 1fr; }
-      .reset-button { margin-left: 0; }
       .duality { grid-template-columns: 1fr; }
       .connector { min-height: 64px; transform: rotate(90deg); }
       .invocation, .output-map, .guardrail-grid, .accessibility-flow { grid-template-columns: 1fr; }
@@ -346,7 +338,7 @@
       <a class="brand" href="index.html" aria-label="Punith Kumar portfolio home">Punith Kumar</a>
       <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
       <div class="nav-links" id="nav-links">
-        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
         <details class="nav-dropdown">
           <summary>Projects</summary>
           <div class="nav-dropdown-menu">
@@ -382,7 +374,7 @@
 
     <section class="section" id="overview" aria-labelledby="overview-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">01 / Architecture Overview</p><h2 id="overview-title">The architecture is the interface</h2></div><p>The system separates source material, orchestration, decision making, execution, outputs, shared memory, and human approval. Each layer has a distinct job and evidence status.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Architecture Overview</p><h2 id="overview-title">The architecture is the interface</h2></div><p>The system separates source material, orchestration, decision making, execution, outputs, shared memory, and human approval. Each layer has a distinct job and evidence status.</p></div>
         <div class="layer-flow" aria-label="High-level architecture flow">
           <article class="layer"><span class="layer-number">01</span><h3>Human / UX Designer</h3><p>Provides evidence, direction, review, and approval.</p></article>
           <article class="layer"><span class="layer-number">02</span><h3>Input Layer</h3><p>Immutable human source material in <code>input/</code>.</p></article>
@@ -398,7 +390,7 @@
 
     <section class="section section-soft" id="lifecycle" aria-labelledby="lifecycle-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">02 / UX Lifecycle</p><h2 id="lifecycle-title">Eight owners. One connected practice.</h2></div><p>The expected path is sequential enough to create clarity and flexible enough to return work upstream when evidence, requirements, or behavior remain unresolved.</p></div>
+        <div class="section-head"><div><p class="eyebrow">UX Lifecycle</p><h2 id="lifecycle-title">Eight owners. One connected practice.</h2></div><p>The expected path is sequential enough to create clarity and flexible enough to return work upstream when evidence, requirements, or behavior remain unresolved.</p></div>
         <div class="lifecycle" aria-label="Eight-stage UX lifecycle">
           <article class="stage"><span class="stage-no">01</span><h3>Project Orchestrator</h3><p>Project definition</p></article>
           <article class="stage"><span class="stage-no">02</span><h3>UX Research</h3><p>Research direction</p></article>
@@ -423,7 +415,7 @@
 
     <section class="section" id="agents" aria-labelledby="agents-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">03 / Agent Directory</p><h2 id="agents-title">Specialized decision makers</h2></div><p>Open an agent to see its role, objective, primary inputs, output, gate, and routing. The detailed Markdown agent definition remains the authority.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Agent Directory</p><h2 id="agents-title">Specialized decision makers</h2></div><p>Open an agent to see its role, objective, primary inputs, output, gate, and routing. The detailed Markdown agent definition remains the authority.</p></div>
         <div class="agent-grid">
           <details class="agent-card"><summary><span class="agent-index">01</span><div><h3>Project Orchestrator</h3><p>Senior UX Strategist &amp; UX Program Orchestrator · 3 skills</p></div></summary><div class="agent-body"><div class="data-pair wide"><span class="label">Objective</span><p>Establish a source-grounded project definition that exposes requirements, assumptions, conflicts, gaps, and evidence needs.</p></div><div class="data-pair"><span class="label">Inputs</span><p><code>input/</code>, existing outputs, project memory</p></div><div class="data-pair"><span class="label">Output</span><code>output/01-project/</code></div><div class="data-pair"><span class="label">Gate</span><p>Gate 01 — Project Definition Approval</p></div><div class="data-pair"><span class="label">Handoff / Return</span><p>Next: UX Research. Receives unclear requirements and product rules from later stages.</p></div><div class="agent-skills"><span class="label">Skills in this agent</span><div class="agent-skill-grid"><div class="agent-skill"><b>Project Brief Synthesis</b><p>Turns supplied project material into a concise, source-traceable UX brief.</p></div><div class="agent-skill"><b>Requirements Extraction</b><p>Organizes UX-relevant requirements, conflicts, and unclear items.</p></div><div class="agent-skill"><b>Assumption Tracking</b><p>Records unsupported premises, their risk, and validation needs.</p></div></div></div></div></details>
           <details class="agent-card"><summary><span class="agent-index">02</span><div><h3>UX Research</h3><p>Senior User Researcher · 4 skills</p></div></summary><div class="agent-body"><div class="data-pair wide"><span class="label">Objective</span><p>Establish a reviewable research approach and organize actual evidence without fabricating participants, findings, or behavior.</p></div><div class="data-pair"><span class="label">Inputs</span><p><code>input/</code>, <code>output/01-project/</code>, project memory</p></div><div class="data-pair"><span class="label">Output</span><code>output/02-research/</code></div><div class="data-pair"><span class="label">Gate</span><p>Gate 02 — Research Approval</p></div><div class="data-pair"><span class="label">Handoff / Return</span><p>Next: UX Analysis. Returns unclear definitions or business rules to Agent 01.</p></div><div class="agent-skills"><span class="label">Skills in this agent</span><div class="agent-skill-grid"><div class="agent-skill"><b>Research Assumption Tracking</b><p>Reviews research evidence against assumptions and preserves their validation state.</p></div><div class="agent-skill"><b>Competitor Analysis</b><p>Separates observed competitor patterns from interpretation and opportunity.</p></div><div class="agent-skill"><b>Interview Guide</b><p>Creates neutral, behavior-focused questions tied to research objectives.</p></div><div class="agent-skill"><b>Heuristic Evaluation</b><p>Reviews observable interfaces against a named usability framework.</p></div></div></div></div></details>
@@ -439,11 +431,7 @@
 
     <section class="section section-soft" id="skills" aria-labelledby="skills-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">04 / Agent → Skill Explorer</p><h2 id="skills-title">Select only what the work requires</h2></div><p>Choose an agent to emphasize its actual skill set. Open a skill for its repository-derived purpose and expected output. Unrelated agents remain visible for context.</p></div>
-        <div class="explorer-toolbar" role="group" aria-label="Filter skills by agent">
-          <button class="filter-button" type="button" data-agent-filter="01" aria-pressed="false">01 Project</button><button class="filter-button" type="button" data-agent-filter="02" aria-pressed="false">02 Research</button><button class="filter-button" type="button" data-agent-filter="03" aria-pressed="false">03 Analysis</button><button class="filter-button" type="button" data-agent-filter="04" aria-pressed="false">04 Strategy</button><button class="filter-button" type="button" data-agent-filter="05" aria-pressed="false">05 Architecture</button><button class="filter-button" type="button" data-agent-filter="06" aria-pressed="false">06 Prototype</button><button class="filter-button" type="button" data-agent-filter="07" aria-pressed="false">07 Testing</button><button class="filter-button" type="button" data-agent-filter="08" aria-pressed="false">08 Iteration</button><button class="reset-button" type="button" id="reset-skills">Reset</button>
-        </div>
-        <p class="explorer-status" id="explorer-status" aria-live="polite">All 29 skills shown.</p>
+        <div class="section-head"><div><p class="eyebrow">Agent → Skill Explorer</p><h2 id="skills-title">Explore the complete skill system</h2></div><p>Browse every agent’s actual skill set. Open any skill to review its repository-derived purpose and expected output.</p></div>
         <div class="skill-groups">
           <article class="skill-group" data-agent="01"><div class="skill-group-head"><h3>01 Project Orchestrator</h3><span class="skill-count">3 skills</span></div>
             <details class="skill-card"><summary>Project Brief Synthesis</summary><div class="skill-detail"><p>Synthesizes supplied project material into a concise, source-traceable UX brief without adding unsupported claims.</p><code class="skill-output">output/01-project/project-brief.md</code></div></details>
@@ -496,7 +484,7 @@
 
     <section class="section" aria-labelledby="duality-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">05 / Operating Model</p><h2 id="duality-title">Agent decides. Skill executes.</h2></div><p>The separation protects scope: orchestration stays adaptive while each reusable task retains a clear method, input contract, output, and guardrails.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Operating Model</p><h2 id="duality-title">Agent decides. Skill executes.</h2></div><p>The separation protects scope: orchestration stays adaptive while each reusable task retains a clear method, input contract, output, and guardrails.</p></div>
         <div class="duality"><article class="definition-card"><h3>Agent</h3><ul><li>Decides what needs to happen</li><li>Determines when it should happen</li><li>Selects the appropriate skill</li><li>Checks prerequisites and evidence</li><li>Validates output quality</li><li>Routes work, review, or recovery</li></ul></article><div class="connector" aria-hidden="true">→</div><article class="definition-card"><h3>Skill</h3><ul><li>Defines how a bounded task is performed</li><li>Identifies required inputs</li><li>Provides task instructions</li><li>Defines the expected artifact</li><li>Applies task-specific guardrails</li><li>Preserves evidence and IDs</li></ul></article></div>
         <div class="invocation" aria-label="Skill invocation sequence"><div class="invoke-step">Agent</div><div class="invoke-step">Select Skill</div><div class="invoke-step">Read Definition</div><div class="invoke-step">Collect Context</div><div class="invoke-step">Execute</div><div class="invoke-step">Validate</div><div class="invoke-step">Pass / Retry / Escalate</div></div>
       </div>
@@ -504,7 +492,7 @@
 
     <section class="section section-soft" aria-labelledby="input-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">06 / Input &amp; Source Discovery</p><h2 id="input-title">Flexible evidence, deliberately mapped</h2></div><p>Agent 01 recursively discovers actual source files. Scope is determined from readable content and project context—not from the filename alone.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Input &amp; Source Discovery</p><h2 id="input-title">Flexible evidence, deliberately mapped</h2></div><p>Agent 01 recursively discovers actual source files. Scope is determined from readable content and project context—not from the filename alone.</p></div>
         <div class="architecture-grid">
           <article class="tree-card"><h3>Actual input architecture</h3><ul class="tree"><li>input/requirements/</li><li>input/research/</li><li>input/designs/</li><li>input/references/</li><li>input/general/</li></ul></article>
           <article class="tree-card"><h3>Supported source structures</h3><p>Single or shared BRDs, role-specific and module-specific documents, feature requirements, and mixed nested structures can coexist.</p><div class="source-model"><div><strong>One source</strong><small>Multiple agents / skills</small></div><span>↔</span><div><strong>Multiple sources</strong><small>One bounded task</small></div></div></article>
@@ -517,7 +505,7 @@
 
     <section class="section" aria-labelledby="layers-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">07 / Information Layers</p><h2 id="layers-title">Provenance stays visible</h2></div><p>Location signals evidence status. Derived artifacts and shared memory can guide work, but neither silently becomes original human evidence.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Information Layers</p><h2 id="layers-title">Provenance stays visible</h2></div><p>Location signals evidence status. Derived artifacts and shared memory can guide work, but neither silently becomes original human evidence.</p></div>
         <div class="three-layers"><article class="info-layer"><p class="kicker">Source</p><h3>Input</h3><code>input/</code><ul><li>Human supplied</li><li>Original source material</li><li>Immutable</li></ul></article><article class="info-layer"><p class="kicker">Derived</p><h3>Output</h3><code>output/</code><ul><li>Agent and skill generated</li><li>Reviewed and versioned</li><li>Not automatically approved</li></ul></article><article class="info-layer"><p class="kicker">Context</p><h3>Project Memory</h3><code>project-memory/</code><ul><li>Evidence references</li><li>Questions and assumptions</li><li>Traceability, decisions, state</li></ul></article></div>
         <div class="truth-note"><span>Project memory ≠ original evidence</span><span>Output ≠ automatically approved</span></div>
       </div>
@@ -525,21 +513,21 @@
 
     <section class="section section-soft" aria-labelledby="outputs-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">08 / Output Architecture</p><h2 id="outputs-title">Every stage has an owner</h2></div><p>The numbered output structure mirrors the agent lifecycle. Paths are architectural destinations; artifact existence never implies approval.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Output Architecture</p><h2 id="outputs-title">Every stage has an owner</h2></div><p>The numbered output structure mirrors the agent lifecycle. Paths are architectural destinations; artifact existence never implies approval.</p></div>
         <div class="output-map"><article class="output-cell"><code>output/01-project/</code><b>Project Orchestrator</b></article><article class="output-cell"><code>output/02-research/</code><b>UX Research</b></article><article class="output-cell"><code>output/03-analysis/</code><b>UX Analysis</b></article><article class="output-cell"><code>output/04-strategy/</code><b>UX Strategy</b></article><article class="output-cell"><code>output/05-architecture/</code><b>UX Architecture</b></article><article class="output-cell"><code>output/06-prototype/</code><b>Interaction &amp; Prototype</b></article><article class="output-cell"><code>output/07-testing/</code><b>UX Testing</b></article><article class="output-cell"><code>output/08-iteration/</code><b>UX Iteration &amp; Critique</b></article></div>
       </div>
     </section>
 
     <section class="section" aria-labelledby="memory-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">09 / Project Memory</p><h2 id="memory-title">Shared context without evidence inflation</h2></div><p>Six lightweight records maintain continuity across agents while keeping complete artifacts in their owning output directories.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Project Memory</p><h2 id="memory-title">Shared context without evidence inflation</h2></div><p>Six lightweight records maintain continuity across agents while keeping complete artifacts in their owning output directories.</p></div>
         <div class="memory-grid"><article class="memory-card"><code>evidence-index.md</code><h3>Evidence Index</h3><p>Tracks important original evidence with stable EVD and source references.</p></article><article class="memory-card"><code>assumptions.md</code><h3>Assumptions</h3><p>Tracks unvalidated premises, risk, validation needs, and current status.</p></article><article class="memory-card"><code>open-questions.md</code><h3>Open Questions</h3><p>Tracks unresolved Research, UX, Product, Business, and Technical questions.</p></article><article class="memory-card"><code>traceability.md</code><h3>Traceability</h3><p>Connects sources, evidence, derived artifacts, decisions, findings, and iterations.</p></article><article class="memory-card"><code>design-decisions.md</code><h3>Design Decisions</h3><p>Records meaningful decisions, rationale, affected artifacts, and validation state.</p></article><article class="memory-card"><code>project-state.md</code><h3>Project State</h3><p>Tracks the active stage, owner, gate decisions, blockers, and next action.</p></article></div>
       </div>
     </section>
 
     <section class="section section-soft" id="evidence" aria-labelledby="evidence-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">10 / Evidence &amp; Traceability</p><h2 id="evidence-title">Decisions retain their lineage</h2></div><p>Select a node to emphasize its neighbors. The chain is illustrative: each project uses only the relationships its evidence actually supports.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Evidence &amp; Traceability</p><h2 id="evidence-title">Decisions retain their lineage</h2></div><p>Select a node to emphasize its neighbors. The chain is illustrative: each project uses only the relationships its evidence actually supports.</p></div>
         <div class="trace-wrap"><div class="trace-chain" id="trace-chain" aria-label="Traceability ID chain"><button class="trace-node" type="button">SRC</button><span class="trace-link"></span><button class="trace-node" type="button">EVD</button><span class="trace-link"></span><button class="trace-node" type="button">OBS</button><span class="trace-link"></span><button class="trace-node" type="button">THM</button><span class="trace-link"></span><button class="trace-node" type="button">INS</button><span class="trace-link"></span><button class="trace-node" type="button">PRB</button><span class="trace-link"></span><button class="trace-node" type="button">OPP</button><span class="trace-link"></span><button class="trace-node" type="button">FLW</button><span class="trace-link"></span><button class="trace-node" type="button">SCR</button><span class="trace-link"></span><button class="trace-node" type="button">DEC</button><span class="trace-link"></span><button class="trace-node" type="button">UTF</button><span class="trace-link"></span><button class="trace-node" type="button">A11Y</button><span class="trace-link"></span><button class="trace-node" type="button">ITR</button></div></div>
         <div class="trace-legend"><div><b>SRC</b><br>Source file</div><div><b>EVD / OBS</b><br>Evidence and observation</div><div><b>THM / INS</b><br>Theme and insight</div><div><b>PRB / OPP</b><br>Problem and opportunity</div><div><b>FLW / SCR</b><br>Flow and screen</div><div><b>DEC</b><br>Design decision</div><div><b>UTF</b><br>Usability finding</div><div><b>A11Y</b><br>Accessibility finding</div><div><b>ITR</b><br>Iteration</div></div>
         <div class="example-chain"><p class="kicker">Illustrative traceability example — not project evidence</p><code>SRC-003 → EVD-019 → OBS-007 → THM-003 → INS-011 → PRB-004 → OPP-007 → FLW-003 → SCR-014 → A11Y-003 → ITR-007</code></div>
@@ -548,7 +536,7 @@
 
     <section class="section" id="governance" aria-labelledby="governance-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">11 / Human Governance</p><h2 id="governance-title">Generated does not mean approved</h2></div><p>Each major stage stops at an explicit human gate tied to artifact versions and scope. Material revision returns to the affected gate.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Human Governance</p><h2 id="governance-title">Generated does not mean approved</h2></div><p>Each major stage stops at an explicit human gate tied to artifact versions and scope. Material revision returns to the affected gate.</p></div>
         <div class="gate-timeline"><article class="gate"><span class="gate-no">01</span><h3>Project Definition Approval</h3></article><article class="gate"><span class="gate-no">02</span><h3>Research Approval</h3></article><article class="gate"><span class="gate-no">03</span><h3>Research Synthesis Approval</h3></article><article class="gate"><span class="gate-no">04</span><h3>UX Strategy Approval</h3></article><article class="gate"><span class="gate-no">05</span><h3>Architecture Approval</h3></article><article class="gate"><span class="gate-no">06</span><h3>Prototype Approval</h3></article><article class="gate"><span class="gate-no">07</span><h3>Testing Findings Review</h3></article><article class="gate"><span class="gate-no">08</span><h3>Iteration Approval</h3></article></div>
         <div class="lifecycle-states" aria-label="Artifact lifecycle"><div class="state primary">DRAFT</div><div class="state primary">REVIEW</div><div class="state primary">APPROVED</div><div class="state primary">VALIDATED</div><div class="state">REVISED</div><div class="state">BLOCKED</div><div class="state">DEPRECATED</div></div>
         <p class="small muted" style="margin-top:16px">Approval authorizes progression within a reviewed scope. Validation requires actual validation evidence.</p>
@@ -557,7 +545,7 @@
 
     <section class="section section-soft" aria-labelledby="a11y-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">12 / Accessibility Capability</p><h2 id="a11y-title">Accessibility lives inside Testing</h2></div><p>The accessibility capability is a testing skill, not a separate agent. It classifies evidence carefully and preserves each A11Y finding through remediation and re-evaluation.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Accessibility Capability</p><h2 id="a11y-title">Accessibility lives inside Testing</h2></div><p>The accessibility capability is a testing skill, not a separate agent. It classifies evidence carefully and preserves each A11Y finding through remediation and re-evaluation.</p></div>
         <div class="accessibility-flow"><article class="a11y-step"><code>06</code><b>Interaction &amp; Prototype</b></article><article class="a11y-step"><code>07</code><b>UX Testing</b></article><article class="a11y-step"><code>Skill</code><b>Accessibility Evaluation &amp; Documentation</b></article><article class="a11y-step"><code>A11Y-001</code><b>Accessibility Finding</b></article><article class="a11y-step"><code>Report</code><b>Accessibility Evaluation</b></article><article class="a11y-step"><code>08 → 06</code><b>Iteration &amp; Revision</b></article><article class="a11y-step"><code>07</code><b>Accessibility Re-evaluation</b></article></div>
         <div class="a11y-meta"><span>CONFIRMED</span><span>POTENTIAL_RISK</span><span>IMPLEMENTATION_DEPENDENT</span><span>REQUIRES_TESTING</span><span><code>output/07-testing/accessibility/</code></span></div>
       </div>
@@ -565,20 +553,20 @@
 
     <section class="section" aria-labelledby="guardrails-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">13 / Guardrails</p><h2 id="guardrails-title">Reliability is designed in</h2></div><p>The shared standards protect the system from plausible but unsupported UX work.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Guardrails</p><h2 id="guardrails-title">Reliability is designed in</h2></div><p>The shared standards protect the system from plausible but unsupported UX work.</p></div>
         <div class="guardrail-grid"><article class="guardrail"><span class="agent-index">01</span><h3>Evidence Over Invention</h3><p>Never fabricate research, participants, requirements, behavior, technical capability, or validation.</p></article><article class="guardrail"><span class="agent-index">02</span><h3>Assumptions Stay Assumptions</h3><p>Confidence and repetition do not silently convert an unvalidated premise into fact.</p></article><article class="guardrail"><span class="agent-index">03</span><h3>Preserve Contradictions</h3><p>Conflicting evidence remains visible until explicit authority or clarification resolves it.</p></article><article class="guardrail"><span class="agent-index">04</span><h3>Maintain Traceability</h3><p>Important artifacts preserve supported upstream and downstream relationships.</p></article><article class="guardrail"><span class="agent-index">05</span><h3>Human Approval</h3><p>File creation and quality review never silently satisfy a human gate.</p></article><article class="guardrail"><span class="agent-index">06</span><h3>Respect Boundaries</h3><p>Agents route work instead of absorbing another stage’s responsibility.</p></article><article class="guardrail"><span class="agent-index">07</span><h3>Input Immutability</h3><p>Original human source files remain unchanged and are never overwritten by generated work.</p></article><article class="guardrail"><span class="agent-index">08</span><h3>Skip Unsupported Artifacts</h3><p>The system records gaps rather than manufacturing personas, journeys, findings, or solutions.</p></article></div>
       </div>
     </section>
 
     <section class="section section-soft" id="system" aria-labelledby="system-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">14 / Complete System</p><h2 id="system-title">One operating model, end to end</h2></div><p>The architecture aligns human judgment, specialized agents, reusable execution methods, derived artifacts, and shared state in a controlled UX lifecycle.</p></div>
+        <div class="section-head"><div><p class="eyebrow">Complete System</p><h2 id="system-title">One operating model, end to end</h2></div><p>The architecture aligns human judgment, specialized agents, reusable execution methods, derived artifacts, and shared state in a controlled UX lifecycle.</p></div>
         <div class="system-diagram"><div class="system-spine"><div class="system-node human"><span>01</span><b>Human / UX Designer</b><span>Evidence · direction · approval</span></div><div class="system-arrow">↓</div><div class="system-node"><span>02</span><b>Input</b><span>Immutable source material</span></div><div class="system-arrow">↓</div><div class="system-node"><span>03</span><b>Project Orchestrator</b><span>Discovery · source mapping · routing</span></div><div class="system-arrow">↓</div><div class="system-node"><span>04</span><b>Agents</b><span>Decide what, when, and which skill</span></div><div class="system-arrow">↓</div><div class="system-node"><span>05</span><b>Skills</b><span>Execute bounded UX work</span></div><div class="system-arrow">↓</div><div class="system-node"><span>06</span><b>Output</b><span>Derived and versioned artifacts</span></div><div class="system-arrow">↓</div><div class="system-node"><span>07</span><b>Project Memory</b><span>Traceability · decisions · state</span></div><div class="system-arrow">↓</div><div class="system-node gate"><span>08</span><b>Approval Gate</b><span>Human review of version and scope</span></div><div class="system-arrow">↓</div><div class="system-node"><span>09</span><b>Next Agent</b><span>Handoff or controlled return</span></div></div><div class="system-loop">UX lifecycle ↺ Evidence-driven iteration</div></div>
       </div>
     </section>
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="container contact-inner">
-        <div><p class="eyebrow">15 / Contact</p><h2 id="contact-title">Let’s make complex feel simple.</h2></div>
+        <div><p class="eyebrow">Contact</p><h2 id="contact-title">Let’s make complex feel simple.</h2></div>
         <div class="contact-actions">
           <a class="contact-button" href="mailto:punithravi1@gmail.com">punithravi1@gmail.com</a>
           <a class="contact-link" href="https://www.linkedin.com/in/punith-uiux/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
@@ -624,31 +612,6 @@
       const skills = document.querySelectorAll('.skill-card');
       document.getElementById('agent-count').textContent = String(agents.length);
       document.getElementById('skill-count').textContent = String(skills.length);
-
-      const filters = Array.from(document.querySelectorAll('[data-agent-filter]'));
-      const groups = Array.from(document.querySelectorAll('.skill-group'));
-      const status = document.getElementById('explorer-status');
-      const reset = document.getElementById('reset-skills');
-
-      function setFilter(value) {
-        filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.agentFilter === value)));
-        groups.forEach(group => {
-          const active = group.dataset.agent === value;
-          group.classList.toggle('is-active', active);
-          group.classList.toggle('is-dimmed', Boolean(value) && !active);
-        });
-        if (value) {
-          const selected = groups.find(group => group.dataset.agent === value);
-          const count = selected.querySelectorAll('.skill-card').length;
-          status.textContent = `Agent ${value} selected. ${count} related skill${count === 1 ? '' : 's'} emphasized.`;
-          selected.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
-        } else {
-          status.textContent = `All ${skills.length} skills shown.`;
-        }
-      }
-
-      filters.forEach(button => button.addEventListener('click', () => setFilter(button.dataset.agentFilter)));
-      reset.addEventListener('click', () => setFilter(''));
 
       const chain = document.getElementById('trace-chain');
       const nodes = Array.from(chain.querySelectorAll('.trace-node'));
