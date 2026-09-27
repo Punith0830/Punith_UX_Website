@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MYFutureJobs mobile application UX case study — a mobile-first job-search experience for job seekers in Malaysia.">
+  <meta name="theme-color" content="#f4f4fa">
+  <title>MYFutureJobs — Mobile Application Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23111052'/%3E%3Cpath d='M17 24h30v24H17z' fill='%23fff'/%3E%3Cpath d='M25 24v-5h14v5' fill='none' stroke='%23ff6a1a' stroke-width='5'/%3E%3Cpath d='M17 32h30' stroke='%23ff6a1a' stroke-width='4'/%3E%3C/svg%3E">
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem('portfolio-theme');
+        const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = saved || preferred;
+      } catch { document.documentElement.dataset.theme = 'light'; }
+    })();
+  </script>
+  <style>
+    :root {
+      --ink: #211f60;
+      --ink-2: #332d86;
+      --navy: #211f60;
+      --night: #1a1a1a;
+      --black: #1a1a1a;
+      --paper: #f4f4fa;
+      --surface: #ffffff;
+      --white: #ffffff;
+      --orange: #f36c21;
+      --orange-soft: #ffb182;
+      --pink: #cc3366;
+      --pink-soft: #fff0f4;
+      --mint-soft: #eef8fb;
+      --blue: #574bd4;
+      --cyan: #29c5e5;
+      --text: #1a1a1a;
+      --heading: #211f60;
+      --muted: #68687a;
+      --line: rgba(33, 31, 96, .14);
+      --night-line: rgba(255, 255, 255, .14);
+      --shadow: 0 24px 70px rgba(18, 13, 72, .14);
+      --header-bg: rgba(26, 26, 26, .92);
+      --header-border: rgba(255, 255, 255, .14);
+      --nav-text: #d2d2d2;
+      --nav-hover: #ffffff;
+      --nav-panel: #1a1a1a;
+      --dropdown-bg: #111111;
+      --blue-1: #0066b1;
+      --blue-2: #1c69d4;
+      --red: #e22718;
+      --available-text: rgba(33, 31, 96, .06);
+      --display-font: BMWTypeNextLatin, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --body-font: "BMWTypeNextLatin Light", BMWTypeNextLatin, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --max: 1180px;
+      --gutter: clamp(1.25rem, 4vw, 3.5rem);
+      --radius: 28px;
+    }
+
+    html[data-theme="dark"] {
+      --paper: #0e0e14;
+      --surface: #15151d;
+      --text: #ffffff;
+      --heading: #ffffff;
+      --muted: #b2b1bd;
+      --line: rgba(255, 255, 255, .15);
+      --pink-soft: #25151f;
+      --mint-soft: #122126;
+      --available-text: rgba(255, 255, 255, .06);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 86px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--body-font);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { color: var(--white); background: var(--orange); }
+
+    .skip-link {
+      position: fixed;
+      z-index: 200;
+      top: .75rem;
+      left: .75rem;
+      padding: .7rem 1rem;
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 999px;
+      transform: translateY(-180%);
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: none; }
+
+    .progress {
+      position: fixed;
+      z-index: 150;
+      inset: 0 auto auto 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), #ff9b54);
+    }
+
+    .shell { width: min(calc(100% - (var(--gutter) * 2)), var(--max)); margin-inline: auto; }
+    .section { padding-block: clamp(5rem, 10vw, 9rem); }
+    .section-head { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(2rem, 7vw, 7rem); align-items: end; margin-bottom: clamp(2.5rem, 6vw, 5rem); }
+    .eyebrow { margin: 0 0 1rem; color: var(--orange); font-size: .78rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--display-font); text-wrap: balance; }
+    h2 { margin-bottom: 0; color: var(--heading); font-size: clamp(2.6rem, 6vw, 5.6rem); line-height: .94; letter-spacing: -.06em; }
+    h3 { margin-bottom: .8rem; color: var(--heading); font-size: clamp(1.3rem, 2vw, 1.8rem); line-height: 1.1; letter-spacing: -.025em; }
+    .section-intro { margin: 0; max-width: 45rem; color: var(--muted); font-size: clamp(1.05rem, 1.5vw, 1.25rem); }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: 68px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+      backdrop-filter: blur(16px);
+    }
+    .nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; color: var(--white); font-size: .93rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: color .25s ease, letter-spacing .35s ease, transform .25s ease; }
+    .brand:hover, .brand:focus-visible { color: var(--nav-hover); letter-spacing: .125em; transform: translateX(3px); }
+    .brand:active { transform: translateX(1px) scale(.98); }
+    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 2.3vw, 2.2rem); }
+    .nav-links a { position: relative; padding-block: .65rem; color: var(--nav-text); font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; transition: color .25s ease, transform .25s ease; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: .25rem; height: 2px; background: linear-gradient(90deg, var(--blue-1), var(--blue-2), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2,.75,.25,1); }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--nav-hover); transform: translateY(-2px); }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { transform: scaleX(1); }
+    .nav-links a:active { transform: translateY(0) scale(.97); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown summary { position: relative; display: flex; align-items: center; gap: .55rem; padding-block: .65rem; color: var(--nav-text); font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; list-style: none; transition: color .25s ease, transform .25s ease; }
+    .nav-dropdown summary::-webkit-details-marker { display: none; }
+    .nav-dropdown summary::before { content: ""; position: absolute; left: 0; right: 0; bottom: .25rem; height: 2px; background: linear-gradient(90deg, var(--blue-1), var(--blue-2), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2,.75,.25,1); }
+    .nav-dropdown summary::after { content: ""; flex: 0 0 auto; width: .42rem; height: .42rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-.12rem) rotate(45deg); transform-origin: center; transition: transform .25s ease; }
+    .nav-dropdown[open] summary::after { transform: translateY(.12rem) rotate(225deg); }
+    .nav-dropdown summary:hover, .nav-dropdown summary:focus-visible { color: var(--nav-hover); transform: translateY(-2px); }
+    .nav-dropdown summary:hover::before, .nav-dropdown summary:focus-visible::before, .nav-dropdown[open] summary::before { transform: scaleX(1); }
+    .nav-dropdown-menu { position: absolute; top: calc(100% + .55rem); left: 50%; min-width: 250px; padding: .45rem; background: var(--dropdown-bg); border: 1px solid var(--line); box-shadow: 0 18px 45px rgba(0,0,0,.28); transform: translateX(-50%); }
+    .nav-dropdown-menu a { display: block; padding: .8rem .9rem; border-bottom: 1px solid var(--line); font-size: .76rem; white-space: nowrap; }
+    .nav-dropdown-menu a:last-child { border-bottom: 0; }
+    .nav-dropdown-menu a::after { display: none; }
+    .menu-btn { display: none; width: 48px; height: 48px; padding: 0; border: 1px solid transparent; color: var(--white); background: transparent; cursor: pointer; transition: background .25s ease, border-color .25s ease, transform .2s ease; }
+    .menu-btn span { display: block; width: 23px; height: 1px; margin: 6px auto; background: currentColor; transition: transform .2s, opacity .2s; }
+    .menu-btn:hover, .menu-btn:focus-visible { background: rgba(255,255,255,.08); border-color: var(--header-border); }
+    .theme-toggle { display: inline-flex; width: 42px; height: 42px; flex: 0 0 auto; align-items: center; justify-content: center; border: 1px solid var(--header-border); background: transparent; color: var(--nav-text); cursor: pointer; transition: color .25s ease, border-color .25s ease, transform .25s ease, background .25s ease; }
+    .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--nav-hover); border-color: var(--nav-hover); background: rgba(255,255,255,.08); transform: translateY(-2px); }
+    .theme-icon::before { content: "☼"; display: block; font-size: 1.15rem; line-height: 1; }
+    html[data-theme="light"] .theme-icon::before { content: "☾"; }
+    .theme-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding: clamp(8.5rem, 14vw, 11rem) 0 clamp(4rem, 7vw, 6rem);
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 18%, rgba(87, 75, 212, .5), transparent 30%),
+        radial-gradient(circle at 18% 83%, rgba(255, 106, 26, .17), transparent 28%),
+        linear-gradient(135deg, var(--night), #111052 64%, #171071);
+    }
+    .hero::before { content: ""; position: absolute; width: 34rem; height: 34rem; right: -15rem; top: 20%; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; box-shadow: 0 0 0 80px rgba(255,255,255,.025), 0 0 0 160px rgba(255,255,255,.018); }
+    .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+    .hero .eyebrow { color: var(--orange-soft); }
+    .hero h1 { margin-bottom: 1.7rem; max-width: 10ch; font-size: clamp(4rem, 8.8vw, 8.6rem); line-height: .83; letter-spacing: -.075em; }
+    .hero h1 .outline { display: block; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.55); }
+    .hero-lead { max-width: 36rem; margin-bottom: 2.2rem; color: rgba(255,255,255,.72); font-size: clamp(1.05rem, 1.55vw, 1.3rem); }
+    .meta { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .meta span { padding: .55rem .8rem; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; color: rgba(255,255,255,.82); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-media { position: relative; }
+    .hero-media::before { content: ""; position: absolute; inset: 10% -8% -8% 12%; background: var(--orange); border-radius: var(--radius); transform: rotate(3deg); opacity: .82; }
+    .hero-media img { position: relative; width: 100%; border-radius: var(--radius); box-shadow: 0 36px 100px rgba(0,0,0,.38); }
+    .hero-index { position: absolute; right: -1rem; bottom: -1.1rem; display: grid; place-items: center; width: 7rem; aspect-ratio: 1; color: var(--ink); background: var(--white); border-radius: 50%; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-align: center; text-transform: uppercase; box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+
+    .overview { background: var(--surface); }
+    .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .overview-card { min-height: 22rem; padding: clamp(1.8rem, 4vw, 3rem); }
+    .overview-card + .overview-card { border-left: 1px solid var(--line); }
+    .overview-card .number { display: block; margin-bottom: 6rem; color: var(--orange); font-size: .8rem; font-weight: 850; letter-spacing: .15em; }
+    .overview-card p { margin-bottom: 0; color: var(--muted); }
+
+    .statement { position: relative; padding-block: clamp(4rem, 8vw, 7rem); color: var(--white); background: var(--orange); overflow: hidden; }
+    .statement::after { content: "MOBILE"; position: absolute; right: -2vw; bottom: -7vw; color: rgba(255,255,255,.11); font-size: clamp(7rem, 22vw, 20rem); font-weight: 900; line-height: .8; letter-spacing: -.08em; }
+    .statement p { position: relative; z-index: 1; margin: 0; max-width: 21ch; font-size: clamp(2.2rem, 5vw, 4.7rem); font-weight: 780; line-height: 1; letter-spacing: -.05em; }
+
+    .process { background: var(--paper); }
+    .process-list { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .process-step { position: relative; padding: 2rem 1.25rem 2.8rem; }
+    .process-step + .process-step { border-left: 1px solid var(--line); }
+    .process-step b { display: inline-grid; place-items: center; width: 2.3rem; aspect-ratio: 1; margin-bottom: 3rem; color: var(--white); background: var(--ink); border-radius: 50%; font-size: .76rem; }
+    .process-step h3 { font-size: 1.1rem; }
+    .process-step p { margin-bottom: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+
+    .system { color: var(--white); background: var(--black); }
+    .system h2, .system h3 { color: var(--white); }
+    .system .section-intro { color: rgba(255,255,255,.66); }
+    .system-grid { display: grid; gap: 1.5rem; }
+    .system-board { margin: 0; overflow: hidden; background: #f4f4fa; border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); }
+    .system-board img { width: 100%; }
+    .system-board figcaption { display: grid; grid-template-columns: auto minmax(0, .7fr) minmax(0, 1.3fr); gap: 1.5rem; align-items: start; padding: clamp(1.3rem, 3vw, 2.2rem); color: var(--white); background: var(--black); border-top: 1px solid rgba(255,255,255,.16); }
+    .system-board figcaption span { color: var(--orange-soft); font-size: .75rem; font-weight: 800; letter-spacing: .14em; }
+    .system-board figcaption strong { font-size: 1.15rem; }
+    .system-board figcaption p { margin: 0; color: rgba(255,255,255,.62); }
+
+    .experience { color: var(--white); background: var(--night); }
+    .experience h2 { color: var(--white); }
+    .experience .section-intro { color: rgba(255,255,255,.62); }
+    .experience .section-head { align-items: start; }
+    .phone-stage { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.7rem, 2vw, 1.6rem); align-items: end; }
+    .phone-card { position: relative; padding: 1.2rem; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); border: 1px solid var(--night-line); border-radius: var(--radius); overflow: hidden; transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .3s ease; }
+    .phone-card:nth-child(even) { transform: translateY(2.8rem); }
+    .phone-card:hover { border-color: rgba(255,106,26,.8); transform: translateY(-.5rem); }
+    .phone-card:nth-child(even):hover { transform: translateY(2.3rem); }
+    .phone-card img { width: 100%; height: auto; border-radius: 22px; }
+    .phone-card p { margin: 1rem 0 0; color: rgba(255,255,255,.55); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+
+    .product { background: var(--surface); }
+    .feature-spotlight { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; min-height: 42rem; margin-bottom: clamp(2rem, 5vw, 4rem); padding: clamp(2rem, 6vw, 5rem); color: var(--white); background: linear-gradient(135deg, var(--ink), #3329a2); border-radius: var(--radius); overflow: hidden; }
+    .feature-spotlight h3 { max-width: 9ch; color: var(--white); font-size: clamp(2.6rem, 5.5vw, 5rem); line-height: .92; letter-spacing: -.06em; }
+    .feature-spotlight p { max-width: 32rem; color: rgba(255,255,255,.7); }
+    .feature-spotlight img { width: min(100%, 34rem); margin-inline: auto; filter: drop-shadow(0 25px 32px rgba(0,0,0,.35)); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .feature-card { display: flex; flex-direction: column; min-height: 42rem; padding: clamp(1.5rem, 3vw, 2.4rem); background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .feature-card:nth-child(2) { background: var(--pink-soft); }
+    .feature-card h3 { margin-top: 1rem; }
+    .feature-card p { margin-bottom: 1.8rem; color: var(--muted); }
+    .feature-card img { width: min(100%, 25rem); max-height: 33rem; margin: auto auto -3.5rem; object-fit: contain; object-position: center top; filter: drop-shadow(0 18px 24px rgba(17,16,82,.17)); transition: transform .45s ease; }
+    .feature-card:hover img { transform: translateY(-.75rem); }
+    .activity-band { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; margin-top: 1.25rem; padding: clamp(2rem, 6vw, 5rem); background: var(--mint-soft); border-radius: var(--radius); overflow: hidden; }
+    .activity-band img { width: min(100%, 28rem); margin-inline: auto; filter: drop-shadow(0 20px 30px rgba(17,16,82,.14)); }
+    .activity-band p { max-width: 33rem; color: var(--muted); }
+
+    .profile { background: #ebeafd; }
+    .profile-layout { display: grid; gap: clamp(3rem, 7vw, 6rem); }
+    .profile-copy p { max-width: 34rem; color: var(--muted); }
+    .profile-copy { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 7vw, 7rem); align-items: start; }
+    .profile-copy .profile-details { max-width: 38rem; }
+    .profile-list { margin: 2rem 0 0; padding: 0; list-style: none; }
+    .profile-list li { display: flex; gap: .8rem; padding-block: .9rem; border-top: 1px solid var(--line); font-weight: 700; }
+    .profile-list li::before { content: ""; flex: 0 0 auto; width: .65rem; height: .65rem; margin-top: .45rem; background: var(--orange); border-radius: 50%; }
+    .profile-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); align-items: stretch; }
+    .profile-mockup { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; background: linear-gradient(155deg, rgba(255,255,255,.68), rgba(255,255,255,.24)); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 22px 55px rgba(33,31,96,.12); }
+    .profile-mockup img { position: absolute; left: 50%; top: 3%; width: 285%; max-width: none; transform: translateX(-50%); filter: drop-shadow(0 22px 30px rgba(17,16,82,.2)); transition: transform .45s cubic-bezier(.2,.75,.25,1); }
+    .profile-mockup:nth-child(2) img { top: -2%; width: 245%; }
+    .profile-mockup:hover img { transform: translateX(-50%) translateY(-.6rem) scale(1.025); }
+    .profile-mockup figcaption { position: absolute; z-index: 2; inset: auto .8rem .8rem; padding: .75rem .9rem; color: var(--white); background: rgba(33,31,96,.9); border-radius: 999px; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-align: center; text-transform: uppercase; backdrop-filter: blur(10px); }
+    html[data-theme="dark"] .profile { background: #171529; }
+    html[data-theme="dark"] .profile-mockup { background: linear-gradient(155deg, rgba(255,255,255,.09), rgba(255,255,255,.025)); }
+
+    .outcomes { color: var(--white); background: var(--ink); }
+    .outcomes h2 { color: var(--white); }
+    .outcomes .section-intro { color: rgba(255,255,255,.65); }
+    .takeaways { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--night-line); border-radius: var(--radius); overflow: hidden; }
+    .takeaway { min-height: 19rem; padding: clamp(1.5rem, 3vw, 2.4rem); }
+    .takeaway + .takeaway { border-left: 1px solid var(--night-line); }
+    .takeaway span { display: block; margin-bottom: 4.5rem; color: var(--orange-soft); font-size: .75rem; font-weight: 850; letter-spacing: .12em; }
+    .takeaway h3 { color: var(--white); }
+    .takeaway p { margin-bottom: 0; color: rgba(255,255,255,.58); font-size: .92rem; }
+    .expected { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(2rem, 7vw, 7rem); margin-top: clamp(3rem, 6vw, 5rem); padding-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--night-line); }
+    .expected h3 { color: var(--orange-soft); }
+    .expected p { margin: 0; color: rgba(255,255,255,.76); font-size: clamp(1.3rem, 2.8vw, 2.3rem); line-height: 1.25; letter-spacing: -.025em; }
+
+    .showcase { padding: 0; background: var(--night); }
+    .showcase img { width: 100%; max-height: 80rem; object-fit: cover; }
+    .showcase-caption { display: flex; justify-content: space-between; gap: 2rem; padding: 1.3rem var(--gutter) 2rem; color: rgba(255,255,255,.55); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+
+    .contact { position: relative; padding-block: clamp(6rem, 12vw, 11rem); color: var(--text); background: var(--paper); border-top: 1px solid var(--line); overflow: hidden; }
+    .contact::before { content: "AVAILABLE"; position: absolute; left: 50%; top: clamp(1rem, 4vw, 3.5rem); transform: translateX(-50%); color: var(--available-text); font-size: clamp(3.25rem, 15vw, 13rem); font-weight: 800; line-height: .85; letter-spacing: -.07em; white-space: nowrap; text-align: center; pointer-events: none; }
+    .contact-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: end; }
+    .contact h2 { margin: 0; max-width: 9ch; color: var(--heading); font-size: clamp(3.5rem, 8vw, 8rem); line-height: .88; letter-spacing: -.06em; text-transform: uppercase; }
+    .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .button { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 1rem 1.5rem; border: 1px solid var(--heading); color: var(--heading); font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: color .25s ease, transform .25s ease, box-shadow .3s ease; }
+    .button::before { content: ""; position: absolute; z-index: -1; inset: 0; background: var(--heading); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.75,.25,1); }
+    .button:hover, .button:focus-visible { color: var(--paper); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,.25); }
+    .button:hover::before, .button:focus-visible::before { transform: scaleX(1); }
+    .button:active { transform: translateY(0) scale(.975); }
+    .text-link { position: relative; display: inline-flex; align-items: center; gap: .7rem; padding-block: .8rem; border-bottom: 1px solid var(--line); font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; transition: color .25s ease, gap .3s ease, transform .25s ease; }
+    .text-link::before { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: linear-gradient(90deg, var(--blue-1), var(--blue-2), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(.2,.75,.25,1); }
+    .text-link::after { content: "↗"; font-size: 1.05rem; transition: transform .3s cubic-bezier(.2,.75,.25,1); }
+    .text-link:hover, .text-link:focus-visible { gap: 1rem; transform: translateY(-2px); }
+    .text-link:hover::before, .text-link:focus-visible::before { transform: scaleX(1); }
+    .text-link:hover::after, .text-link:focus-visible::after { transform: translate(3px,-3px); }
+    .text-link:active { transform: translateY(0) scale(.98); }
+    .contact-note { margin: .6rem 0 0; color: var(--muted); }
+    .call-link::after { content: "☎"; }
+    footer { padding-block: 2rem; color: var(--muted); background: var(--paper); border-top: 1px solid var(--line); font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.25,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .feature-spotlight, .activity-band, .profile-layout { grid-template-columns: 1fr; }
+      .profile-copy { grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero { min-height: auto; }
+      .hero h1 { max-width: 8ch; }
+      .hero-media { max-width: 48rem; }
+      .section-head { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .overview-card { min-height: 0; }
+      .overview-card + .overview-card { border-left: 0; border-top: 1px solid var(--line); }
+      .overview-card .number { margin-bottom: 3rem; }
+      .process-list { grid-template-columns: repeat(2, 1fr); border: 1px solid var(--line); }
+      .process-step + .process-step { border-left: 0; }
+      .process-step:nth-child(even) { border-left: 1px solid var(--line); }
+      .process-step:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .process-step:last-child { grid-column: 1 / -1; }
+      .phone-stage { grid-template-columns: repeat(2, 1fr); }
+      .phone-card:nth-child(even) { transform: none; }
+      .phone-card:nth-child(even):hover, .phone-card:hover { transform: translateY(-.4rem); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { min-height: 36rem; }
+      .takeaways { grid-template-columns: repeat(2, 1fr); }
+      .takeaway + .takeaway { border-left: 0; }
+      .takeaway:nth-child(even) { border-left: 1px solid var(--night-line); }
+      .takeaway:nth-child(n+3) { border-top: 1px solid var(--night-line); }
+      .expected { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .menu-btn { display: block; }
+      .menu-btn[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+      .menu-btn[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+      .nav-links { position: fixed; inset: 68px 0 auto; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 1.2rem var(--gutter) 2rem; background: var(--nav-panel); border-top: 4px solid transparent; border-image: linear-gradient(90deg,var(--blue-1) 0 33.3%,var(--blue-2) 33.3% 66.6%,var(--red) 66.6%) 1; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 1rem 0; border-bottom: 1px solid var(--header-border); font-size: 1rem; }
+      .nav-links a::after { display: none; }
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown summary { padding: 1rem 0; border-bottom: 1px solid var(--header-border); font-size: 1rem; }
+      .nav-dropdown-menu { position: static; min-width: 0; padding: .25rem 0 .25rem 1rem; background: var(--dropdown-bg); border: 0; box-shadow: none; transform: none; }
+      .nav-dropdown-menu a { padding: .8rem 0; font-size: .9rem; }
+      .theme-toggle { width: 100%; height: auto; justify-content: flex-start; gap: .75rem; padding: 1rem 0; border: 0; border-bottom: 1px solid var(--header-border); }
+      .theme-label { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; white-space: normal; }
+    }
+
+    @media (max-width: 760px) {
+      .site-header { height: 64px; }
+      .nav-links { inset: 64px 0 auto; }
+      .hero { padding-top: 7.5rem; }
+      .hero h1 { font-size: clamp(3.5rem, 18vw, 5.7rem); }
+      .hero-media::before { inset: 8% -4% -5% 8%; }
+      .hero-index { right: -.2rem; width: 5.4rem; }
+      .process-list { grid-template-columns: 1fr; }
+      .process-step:nth-child(even) { border-left: 0; }
+      .process-step:nth-child(n+2) { border-top: 1px solid var(--line); }
+      .phone-stage { grid-template-columns: 1fr 1fr; }
+      .phone-card { padding: .65rem; border-radius: 18px; }
+      .phone-card p { padding-inline: .25rem; font-size: .66rem; }
+      .feature-spotlight, .activity-band { padding: 1.5rem; }
+      .feature-card { min-height: 34rem; }
+      .profile-gallery { margin-top: 1rem; grid-template-columns: 1fr; }
+      .profile-mockup { width: min(100%, 34rem); margin-inline: auto; aspect-ratio: 4 / 4.6; }
+      .profile-mockup img { top: 0; width: 260%; }
+      .profile-mockup:nth-child(2) img { top: -3%; width: 225%; }
+      .takeaways { grid-template-columns: 1fr; }
+      .takeaway { min-height: 0; }
+      .takeaway:nth-child(even) { border-left: 0; }
+      .takeaway:nth-child(n+2) { border-top: 1px solid var(--night-line); }
+      .takeaway span { margin-bottom: 2.5rem; }
+      .showcase img { min-height: 28rem; object-position: center; }
+      .showcase-caption, .footer-inner { flex-direction: column; align-items: flex-start; }
+      .system-board figcaption { grid-template-columns: auto 1fr; }
+      .system-board figcaption p { grid-column: 1 / -1; }
+      .contact::before { top: 4rem; width: 100%; font-size: clamp(3rem, 15vw, 5rem); white-space: normal; }
+    }
+
+    @media (max-width: 540px) {
+      .phone-stage { grid-template-columns: 1fr; }
+      .phone-card { width: min(100%, 24rem); margin-inline: auto; padding: 1rem; }
+      .profile-gallery { gap: 1rem; }
+      .profile-mockup { width: 100%; aspect-ratio: 4 / 5; }
+      .profile-mockup img { width: 285%; }
+      .profile-mockup:nth-child(2) img { width: 245%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="shell nav-wrap">
+      <a class="brand" href="index.html" aria-label="Punith Kumar Ravikumar, home">Punith Kumar</a>
+      <button class="menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+      <nav class="nav-links" id="nav-links" aria-label="Primary navigation">
+        <a href="index.html#about">About</a>
+        <details class="nav-dropdown">
+          <summary>Projects</summary>
+          <div class="nav-dropdown-menu">
+            <a href="chotadhobi.html">Chota Dhobi</a>
+            <a href="myfuturejobs.html" aria-current="page">MyFuture Jobs</a>
+            <a href="esgplatform.html">ESG Platform</a>
+          </div>
+        </details>
+        <a href="orchestration.html">Orchestration</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false"><span class="theme-icon" aria-hidden="true"></span><span class="theme-label">Dark mode</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Mobile product case study · Malaysia</p>
+          <h1 id="hero-title">Jobs in your <span class="outline">pocket.</span></h1>
+          <p class="hero-lead">Transforming an established employment web portal into an accessible mobile experience for discovering opportunities, applying with confidence and managing a complete job-search journey.</p>
+          <div class="meta" aria-label="Project information">
+            <span>Mobile UX/UI</span>
+            <span>Job search</span>
+            <span>End-to-end flow</span>
+          </div>
+        </div>
+        <figure class="hero-media reveal">
+          <img src="myfuture-jobs-assets/hero-cover.png" alt="MYFutureJobs mobile application shown in two phone mockups" width="1920" height="1160">
+          <figcaption class="hero-index">MYFuture<br>Jobs</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview" aria-labelledby="overview-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Project overview</p>
+            <h2 id="overview-title">From web access to mobile momentum.</h2>
+          </div>
+          <p class="section-intro">MYFutureJobs already supported job seekers through a web portal. The mobile product extended that service into a faster, more accessible experience designed around everyday job-search behavior.</p>
+        </div>
+        <div class="overview-grid reveal">
+          <article class="overview-card">
+            <span class="number">01 / Challenge</span>
+            <h3>Desktop dependence limited access.</h3>
+            <p>The existing portal was functional, but navigating it on smaller screens created friction for job seekers who needed to search, respond and apply while on the move.</p>
+          </article>
+          <article class="overview-card">
+            <span class="number">02 / Objective</span>
+            <h3>Make the core journey feel effortless.</h3>
+            <p>The application needed to simplify job discovery, application tracking, profile management and real-time alerts without losing the capabilities users already relied on.</p>
+          </article>
+          <article class="overview-card">
+            <span class="number">03 / Direction</span>
+            <h3>Mobile-first, familiar and feasible.</h3>
+            <p>Design decisions balanced user needs, client expectations, business goals and technical constraints so the proposed experience could move cleanly into development.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement" aria-label="Project design principle">
+      <div class="shell">
+        <p class="reveal">Find the right opportunity, act on it and stay informed—wherever the search happens.</p>
+      </div>
+    </section>
+
+    <section class="section process" id="process" aria-labelledby="process-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Design process</p>
+            <h2 id="process-title">A structured path from context to interface.</h2>
+          </div>
+          <p class="section-intro">The work moved through collaborative discovery, technical validation and iterative visual exploration before the end-to-end mobile experience was defined.</p>
+        </div>
+        <div class="process-list reveal">
+          <article class="process-step"><b>01</b><h3>Understand scope</h3><p>Aligned the product and design teams on objectives, constraints and the biggest issues in the web experience.</p></article>
+          <article class="process-step"><b>02</b><h3>Consult the client</h3><p>Explored expectations, user demographics, critical features and business goals such as retention and completed applications.</p></article>
+          <article class="process-step"><b>03</b><h3>Check feasibility</h3><p>Worked with development to prioritize valuable features while accounting for technical limitations and the existing stack.</p></article>
+          <article class="process-step"><b>04</b><h3>Explore themes</h3><p>Developed several visual directions across colour, typography, layout and iconography, then combined the strongest elements.</p></article>
+          <article class="process-step"><b>05</b><h3>Design and test</h3><p>Built the key journeys and reviewed usability internally to refine navigation, comprehension and task flow.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section system" id="system" aria-labelledby="system-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Visual system</p>
+            <h2 id="system-title">A reusable language for consistency.</h2>
+          </div>
+          <p class="section-intro">The interface uses Roboto, a focused five-colour palette and reusable mobile patterns so every touchpoint feels recognisable while remaining easy to build and scale.</p>
+        </div>
+        <div class="system-grid">
+          <figure class="system-board reveal">
+            <img src="myfuture-jobs-assets/style-guide.png" alt="MYFutureJobs style guide showing Roboto typography and the product colour palette" width="1920" height="1080" loading="lazy">
+            <figcaption><span>01</span><strong>Typography &amp; colour</strong><p>Roboto Regular, Medium, SemiBold and Bold are paired with brand purple, orange and magenta, supported by black and white for contrast.</p></figcaption>
+          </figure>
+          <figure class="system-board reveal">
+            <img src="myfuture-jobs-assets/component-library.png" alt="MYFutureJobs component library showing icons, navigation, search fields, cards and system states" width="1920" height="1269" loading="lazy">
+            <figcaption><span>02</span><strong>Reusable components</strong><p>A consistent icon set, bottom navigation, search patterns, job cards, notifications, profile modules and feedback states keep the experience coherent.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Entry experience</p>
+            <h2 id="experience-title">A clear start for every job seeker.</h2>
+          </div>
+          <p class="section-intro">The introduction establishes the national employment service, communicates the platform’s value and gives users a direct choice between exploring jobs and signing in.</p>
+        </div>
+        <div class="phone-stage reveal">
+          <figure class="phone-card"><img src="myfuture-jobs-assets/entry-screen.png" alt="MYFutureJobs application entry screen" width="390" height="844" loading="lazy"><p>Entry point</p></figure>
+          <figure class="phone-card"><img src="myfuture-jobs-assets/onboarding-ai.png" alt="Onboarding screen explaining AI matching" width="297" height="642" loading="lazy"><p>AI matching</p></figure>
+          <figure class="phone-card"><img src="myfuture-jobs-assets/onboarding-portal.png" alt="Onboarding screen explaining the national job portal" width="297" height="642" loading="lazy"><p>National portal</p></figure>
+          <figure class="phone-card"><img src="myfuture-jobs-assets/onboarding-internship.png" alt="Onboarding screen for internship opportunities" width="297" height="642" loading="lazy"><p>Inclusive pathways</p></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product" aria-labelledby="product-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Core product</p>
+            <h2 id="product-title">One connected job-search journey.</h2>
+          </div>
+          <p class="section-intro">Recommendations, profile progress, application activity and recruiter actions are brought into a single mobile dashboard so users can immediately understand what needs attention.</p>
+        </div>
+
+        <article class="feature-spotlight reveal">
+          <div>
+            <p class="eyebrow">Personalised dashboard</p>
+            <h3>Relevant opportunities, visible at a glance.</h3>
+            <p>The home experience combines profile completion, recent activity, recruiter actions, interview calls and job recommendations based on the user’s information.</p>
+          </div>
+          <img src="myfuture-jobs-assets/dashboard.png" alt="MYFutureJobs dashboard showing recommendations and profile progress" width="700" height="700" loading="lazy">
+        </article>
+
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <p class="eyebrow">Understand the role</p>
+            <h3>Decision-ready job details.</h3>
+            <p>Qualifications, working hours, salary, sector and role information are organised into a scannable view with a clear application action.</p>
+            <img src="myfuture-jobs-assets/job-details.png" alt="Detailed job vacancy screen" width="700" height="700" loading="lazy">
+          </article>
+          <article class="feature-card reveal">
+            <p class="eyebrow">Refine the search</p>
+            <h3>Filters that match real preferences.</h3>
+            <p>Users can narrow opportunities by date, state, contract type, hours, sector, education level, salary and job category.</p>
+            <img src="myfuture-jobs-assets/job-filters.png" alt="Job filter options in the MYFutureJobs app" width="700" height="700" loading="lazy">
+          </article>
+          <article class="feature-card reveal">
+            <p class="eyebrow">Complete with confidence</p>
+            <h3>A reassuring application finish.</h3>
+            <p>A focused success state confirms submission and keeps momentum by offering the next relevant action instead of leaving users at a dead end.</p>
+            <img src="myfuture-jobs-assets/application-success.png" alt="Successful job application confirmation" width="700" height="700" loading="lazy">
+          </article>
+        </div>
+
+        <article class="activity-band reveal">
+          <img src="myfuture-jobs-assets/activity-log.png" alt="Application activity history shown as a timeline" width="700" height="700" loading="lazy">
+          <div>
+            <p class="eyebrow">Activity history</p>
+            <h3>A transparent record of progress.</h3>
+            <p>The activity log records applications, profile updates, saved jobs, recruiter messages and notification responses. A chronological view gives job seekers more control over a process that can otherwise feel fragmented.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section profile" id="profile" aria-labelledby="profile-title">
+      <div class="shell profile-layout">
+        <div class="profile-copy reveal">
+          <div>
+            <p class="eyebrow">Professional profile</p>
+            <h2 id="profile-title">Better information creates better matches.</h2>
+          </div>
+          <div class="profile-details">
+            <p>The profile experience makes completion visible and divides professional information into manageable sections. Users can update the details that shape recruiter visibility and recommendation quality.</p>
+            <ul class="profile-list">
+              <li>Profile progress and completion cues</li>
+              <li>Job preferences and career objectives</li>
+              <li>Work experience, education and skills</li>
+              <li>Downloadable professional profile</li>
+            </ul>
+          </div>
+        </div>
+        <div class="profile-gallery reveal" aria-label="Profile management screens">
+          <figure class="profile-mockup">
+            <img src="myfuture-jobs-assets/profile-experience.png" alt="Work experience information screen" width="1050" height="540" loading="lazy">
+            <figcaption>Work experience</figcaption>
+          </figure>
+          <figure class="profile-mockup">
+            <img src="myfuture-jobs-assets/profile-overview.png" alt="Profile completion overview" width="1200" height="800" loading="lazy">
+            <figcaption>Profile overview</figcaption>
+          </figure>
+          <figure class="profile-mockup">
+            <img src="myfuture-jobs-assets/job-preferences.png" alt="Job preferences screen" width="1050" height="540" loading="lazy">
+            <figcaption>Job preferences</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section outcomes" id="outcomes" aria-labelledby="outcomes-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">What the process reinforced</p>
+            <h2 id="outcomes-title">Designed through alignment, not assumption.</h2>
+          </div>
+          <p class="section-intro">The project demonstrates how stakeholder context, technical feasibility and repeated design review can work together to shape a coherent mobile product.</p>
+        </div>
+        <div class="takeaways reveal">
+          <article class="takeaway"><span>01</span><h3>User-centred</h3><p>Real needs and existing pain points guided the experience rather than treating mobile as a smaller copy of the web portal.</p></article>
+          <article class="takeaway"><span>02</span><h3>Collaborative</h3><p>Client, product, design and development discussions kept user value, business needs and feasibility aligned.</p></article>
+          <article class="takeaway"><span>03</span><h3>Iterative</h3><p>Multiple visual directions and feedback-led refinements produced a balanced interface with a consistent system.</p></article>
+          <article class="takeaway"><span>04</span><h3>Connected</h3><p>Search, application, tracking and profile tasks form one journey instead of isolated features.</p></article>
+        </div>
+        <div class="expected reveal">
+          <h3>Expected outcome</h3>
+          <p>A more accessible and convenient service for Malaysian job seekers—supporting faster discovery, simpler applications, clearer progress and stronger connections with employers.</p>
+        </div>
+      </div>
+    </section>
+
+    <figure class="showcase" aria-labelledby="showcase-caption">
+      <img src="myfuture-jobs-assets/showcase.png" alt="Collection of MYFutureJobs screens arranged across multiple phones" width="1920" height="1440" loading="lazy">
+      <figcaption class="showcase-caption" id="showcase-caption"><span>MYFutureJobs · Mobile application</span><span>End-to-end experience showcase</span></figcaption>
+    </figure>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-inner reveal">
+        <div><p class="eyebrow">Contact</p><h2 id="contact-title">Let’s make complex feel simple.</h2></div>
+        <div class="contact-actions">
+          <a class="button" href="mailto:punithravi1@gmail.com">punithravi1@gmail.com</a>
+          <a class="text-link call-link" href="tel:9629587706" aria-label="Call Punith Kumar at 9629587706">Call 9629587706</a>
+          <a class="text-link" href="https://www.linkedin.com/in/punith-uiux/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+          <a class="text-link" href="https://www.behance.net/punith-UIUX" target="_blank" rel="noreferrer">Follow on Behance</a>
+          <p class="contact-note">Available for freelance and full-time opportunities.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner"><span>© <span id="year"></span> Punith Kumar Ravikumar</span><span>Designed with precision · Built for clarity</span></div>
+  </footer>
+
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeLabel = themeToggle.querySelector('.theme-label');
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    function applyTheme(theme, persist) {
+      const activeTheme = theme === 'dark' ? 'dark' : 'light';
+      const nextTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = activeTheme;
+      themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
+      themeToggle.setAttribute('aria-pressed', String(activeTheme === 'light'));
+      themeLabel.textContent = `${nextTheme.charAt(0).toUpperCase()}${nextTheme.slice(1)} mode`;
+      themeMeta.setAttribute('content', activeTheme === 'dark' ? '#1a1a1a' : '#f4f4fa');
+      if (persist) {
+        try { localStorage.setItem('portfolio-theme', activeTheme); } catch {}
+      }
+    }
+    applyTheme(document.documentElement.dataset.theme, false);
+    themeToggle.addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
+
+    const menuButton = document.querySelector('.menu-btn');
+    const navigation = document.querySelector('.nav-links');
+    const projectMenu = navigation.querySelector('.nav-dropdown');
+    const progress = document.querySelector('.progress');
+
+    menuButton.addEventListener('click', () => {
+      const open = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!open));
+      navigation.classList.toggle('open', !open);
+    });
+
+    navigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      navigation.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      projectMenu.removeAttribute('open');
+    }));
+
+    document.addEventListener('click', (event) => {
+      if (!projectMenu.contains(event.target)) projectMenu.removeAttribute('open');
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        projectMenu.removeAttribute('open');
+        navigation.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    const updateProgress = () => {
+      const distance = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = `${distance > 0 ? (scrollY / distance) * 100 : 0}%`;
+    };
+    addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
