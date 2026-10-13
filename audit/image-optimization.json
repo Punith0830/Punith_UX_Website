@@ -1,0 +1,412 @@
+{
+  "pages": [
+    {
+      "page": "index.html",
+      "htmlBefore": 1929214,
+      "htmlAfter": 54266
+    },
+    {
+      "page": "routiq.html",
+      "htmlBefore": 105718,
+      "htmlAfter": 105718
+    },
+    {
+      "page": "chotadhobi.html",
+      "htmlBefore": 7326071,
+      "htmlAfter": 50719
+    },
+    {
+      "page": "myfuturejobs.html",
+      "htmlBefore": 8236045,
+      "htmlAfter": 61961
+    },
+    {
+      "page": "esgplatform.html",
+      "htmlBefore": 8717357,
+      "htmlAfter": 63781
+    },
+    {
+      "page": "orchestration.html",
+      "htmlBefore": 106497,
+      "htmlAfter": 106497
+    }
+  ],
+  "images": [
+    {
+      "file": "assets/portfolio/5eec0a1a7bde6658.webp",
+      "originalBytes": 1237146,
+      "bytes": 755864,
+      "width": 885,
+      "height": 885,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/9641214526eb728a.png",
+      "originalBytes": 41081,
+      "bytes": 41081,
+      "width": 375,
+      "height": 988,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/5c9a9a2b0102a9a8.webp",
+      "originalBytes": 55586,
+      "bytes": 55586,
+      "width": 808,
+      "height": 632,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/9696204fd19399a4.webp",
+      "originalBytes": 26908,
+      "bytes": 26908,
+      "width": 808,
+      "height": 632,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/4794f1e598fdcfd3.webp",
+      "originalBytes": 45542,
+      "bytes": 45542,
+      "width": 690,
+      "height": 539,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/90b3d9156ef04a24.webp",
+      "originalBytes": 2369573,
+      "bytes": 1740972,
+      "width": 1672,
+      "height": 941,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/1ab3a8acb2e60fb6.webp",
+      "originalBytes": 54497,
+      "bytes": 42572,
+      "width": 398,
+      "height": 209,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/e8cb9e7cb0d9037f.webp",
+      "originalBytes": 16317,
+      "bytes": 5536,
+      "width": 395,
+      "height": 832,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/926f57957499d95b.webp",
+      "originalBytes": 12894,
+      "bytes": 4118,
+      "width": 395,
+      "height": 832,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/445fb4be1a6f93ef.webp",
+      "originalBytes": 16173,
+      "bytes": 5558,
+      "width": 395,
+      "height": 832,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/822b302258e4c1c1.webp",
+      "originalBytes": 17537,
+      "bytes": 4768,
+      "width": 395,
+      "height": 832,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/41ed95e1f125f16e.webp",
+      "originalBytes": 209382,
+      "bytes": 128184,
+      "width": 549,
+      "height": 1016,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/0bc63291c07a913f.webp",
+      "originalBytes": 257322,
+      "bytes": 145450,
+      "width": 610,
+      "height": 1016,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/d46b83b79c0c9f0a.webp",
+      "originalBytes": 2502924,
+      "bytes": 1620832,
+      "width": 1920,
+      "height": 1281,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/564945dc47114909.webp",
+      "originalBytes": 1707844,
+      "bytes": 1151962,
+      "width": 1920,
+      "height": 1160,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/9e52dd9853d88455.webp",
+      "originalBytes": 92477,
+      "bytes": 34028,
+      "width": 1920,
+      "height": 1080,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/cd60d55905e28701.webp",
+      "originalBytes": 461470,
+      "bytes": 258006,
+      "width": 1920,
+      "height": 1269,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/f027f9148cd2f524.webp",
+      "originalBytes": 36415,
+      "bytes": 22038,
+      "width": 390,
+      "height": 844,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/55a244c186d3285e.webp",
+      "originalBytes": 215207,
+      "bytes": 140652,
+      "width": 297,
+      "height": 642,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/b7accd4d0a479b88.webp",
+      "originalBytes": 216391,
+      "bytes": 142972,
+      "width": 297,
+      "height": 642,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/5e609b1249881d1c.webp",
+      "originalBytes": 216639,
+      "bytes": 142484,
+      "width": 297,
+      "height": 642,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/e4bde3b4aae9999d.webp",
+      "originalBytes": 153095,
+      "bytes": 90594,
+      "width": 700,
+      "height": 700,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/80d2f0e6e1beab78.webp",
+      "originalBytes": 163546,
+      "bytes": 97668,
+      "width": 700,
+      "height": 700,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/346edcba4fc244ce.webp",
+      "originalBytes": 103586,
+      "bytes": 59322,
+      "width": 700,
+      "height": 700,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/62233541440374af.webp",
+      "originalBytes": 79630,
+      "bytes": 45874,
+      "width": 700,
+      "height": 700,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/845d2df9abd18d27.webp",
+      "originalBytes": 120820,
+      "bytes": 64956,
+      "width": 700,
+      "height": 700,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/ac0c56e2e9959a62.webp",
+      "originalBytes": 83843,
+      "bytes": 42442,
+      "width": 1050,
+      "height": 540,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/14c67bfac3f6da51.webp",
+      "originalBytes": 124931,
+      "bytes": 66916,
+      "width": 1200,
+      "height": 800,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/80cd2ffffb443cea.webp",
+      "originalBytes": 89404,
+      "bytes": 45804,
+      "width": 1050,
+      "height": 540,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/d6ec33e8131b2a35.webp",
+      "originalBytes": 2265434,
+      "bytes": 1320472,
+      "width": 1920,
+      "height": 1440,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/e3936a8c17e25dd7.webp",
+      "originalBytes": 2390312,
+      "bytes": 1740144,
+      "width": 2048,
+      "height": 768,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/83317eae9a8a6589.webp",
+      "originalBytes": 3682,
+      "bytes": 1634,
+      "width": 223,
+      "height": 100,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/e7c1f75540a84e13.webp",
+      "originalBytes": 130847,
+      "bytes": 47360,
+      "width": 1920,
+      "height": 1582,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/f8f40a2232bde997.webp",
+      "originalBytes": 488530,
+      "bytes": 370908,
+      "width": 1920,
+      "height": 1381,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/57ee5ed9755d56e0.webp",
+      "originalBytes": 799932,
+      "bytes": 510214,
+      "width": 1212,
+      "height": 871,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/0685b1420619b78b.webp",
+      "originalBytes": 259838,
+      "bytes": 158694,
+      "width": 1218,
+      "height": 875,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/a43369fb1aef8983.webp",
+      "originalBytes": 99185,
+      "bytes": 63994,
+      "width": 555,
+      "height": 399,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/660bf07d421b1887.webp",
+      "originalBytes": 90408,
+      "bytes": 57760,
+      "width": 555,
+      "height": 399,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/4fb5d838cde467f6.webp",
+      "originalBytes": 71020,
+      "bytes": 46110,
+      "width": 502,
+      "height": 399,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/cf65c1dcf4c7ed12.webp",
+      "originalBytes": 236064,
+      "bytes": 152782,
+      "width": 898,
+      "height": 751,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/82f8fb517e2634f5.webp",
+      "originalBytes": 147394,
+      "bytes": 94136,
+      "width": 792,
+      "height": 569,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/2e9914c5d2c694ae.webp",
+      "originalBytes": 515567,
+      "bytes": 322512,
+      "width": 1085,
+      "height": 811,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/b985357377b7ae9e.webp",
+      "originalBytes": 577476,
+      "bytes": 389050,
+      "width": 1123,
+      "height": 811,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/991723c9fd9e1a91.webp",
+      "originalBytes": 354685,
+      "bytes": 211660,
+      "width": 1037,
+      "height": 748,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/315f6fe0f51da36a.webp",
+      "originalBytes": 189701,
+      "bytes": 113564,
+      "width": 1037,
+      "height": 748,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/1759f56a0a3ed8e5.webp",
+      "originalBytes": 67338,
+      "bytes": 38450,
+      "width": 570,
+      "height": 412,
+      "lossless": true
+    },
+    {
+      "file": "assets/portfolio/4a2d4a2c48de31f1.webp",
+      "originalBytes": 68390,
+      "bytes": 39746,
+      "width": 570,
+      "height": 412,
+      "lossless": true
+    }
+  ]
+}

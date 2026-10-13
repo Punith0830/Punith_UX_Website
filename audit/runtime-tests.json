@@ -1,0 +1,6 @@
+{
+  "scenarios": 78,
+  "pages": 6,
+  "result": "passed",
+  "scope": "DOM/runtime only; no rendered layout measurements"
+}

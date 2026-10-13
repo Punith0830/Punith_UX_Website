@@ -1,0 +1,7 @@
+# Local audit dependencies are never part of the portfolio or its deployment.
+.audit-tools/
+audit/tools/
+__pycache__/
+*.pyc
+.github-index-update/
+.github-publish-*/
