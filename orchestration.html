@@ -6,15 +6,7 @@
   <meta name="description" content="A portfolio showcase of an evidence-driven, eight-agent UX orchestration system.">
   <meta name="theme-color" content="#000000">
   <title>Evidence-Driven UX Agent Orchestration</title>
-  <script>
-    (() => {
-      try {
-        const saved = localStorage.getItem('portfolio-theme');
-        const preferred = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        document.documentElement.dataset.theme = saved === 'light' || saved === 'dark' ? saved : preferred;
-      } catch { document.documentElement.dataset.theme = 'dark'; }
-    })();
-  </script>
+  <script>(()=>{const preferred=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';let saved;try{saved=localStorage.getItem('portfolio-theme')}catch{}document.documentElement.dataset.theme=saved==='light'||saved==='dark'?saved:preferred;})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -395,8 +387,9 @@
     .skill-count { color: var(--muted); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
 
   </style>
+<link rel="stylesheet" href="assets/portfolio.css">
 </head>
-<body>
+<body data-page="orchestration">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <nav class="nav container" aria-label="Primary navigation">
@@ -407,9 +400,10 @@
         <details class="nav-dropdown">
           <summary>Projects</summary>
           <div class="nav-dropdown-menu">
-          <a href="chotadhobi.html">Chota Dhobi</a>
-          <a href="myfuturejobs.html">MyFuture Jobs</a>
-          <a href="esgplatform.html">ESG Platform</a>
+            <a href="routiq.html">Routiq</a>
+            <a href="chotadhobi.html">Chota Dhobi</a>
+            <a href="myfuturejobs.html">MyFuture Jobs</a>
+            <a href="esgplatform.html">ESG Platform</a>
           </div>
         </details>
         <a href="orchestration.html" aria-current="page">Orchestration</a>
@@ -419,7 +413,7 @@
     </nav>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <p class="eyebrow">UX AI Orchestration System</p>
@@ -662,7 +656,7 @@
         <div><p class="eyebrow">Contact</p><h2 id="contact-title">Let’s make complex feel simple.</h2></div>
         <div class="contact-actions">
           <a class="contact-button" href="mailto:punithravi1@gmail.com">punithravi1@gmail.com</a>
-          <a class="contact-link call-link" href="tel:9629587706" aria-label="Call Punith Kumar at 9629587706">Call 9629587706</a>
+          <a class="contact-link call-link" href="tel:+919629587706" aria-label="Call Punith Kumar at 9629587706">Call 9629587706</a>
           <a class="contact-link" href="https://www.linkedin.com/in/punith-uiux/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
           <a class="contact-link" href="https://www.behance.net/punith-UIUX" target="_blank" rel="noreferrer">Follow on Behance</a>
           <p class="contact-note">Available for freelance and full-time opportunities.</p>
@@ -673,53 +667,7 @@
 
   <footer class="site-footer"><div class="container footer-inner"><span>© <span id="year"></span> Punith Kumar Ravikumar</span><span>Designed with precision · Built for clarity</span></div></footer>
 
-  <script>
-    (function () {
-      const themeToggle = document.querySelector('.theme-toggle');
-      const themeLabel = themeToggle.querySelector('.theme-label');
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
-      function applyTheme(theme, persist) {
-        const activeTheme = theme === 'light' ? 'light' : 'dark';
-        const nextTheme = activeTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = activeTheme;
-        themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
-        themeToggle.setAttribute('aria-pressed', String(activeTheme === 'light'));
-        themeLabel.textContent = `${nextTheme.charAt(0).toUpperCase()}${nextTheme.slice(1)} mode`;
-        themeMeta.setAttribute('content', activeTheme === 'dark' ? '#000000' : '#f4f4f2');
-        if (persist) {
-          try { localStorage.setItem('portfolio-theme', activeTheme); } catch {}
-        }
-      }
-      applyTheme(document.documentElement.dataset.theme, false);
-      themeToggle.addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
-      const menuButton = document.querySelector('.menu-btn');
-      const nav = document.querySelector('.nav-links');
-      const projectMenu = nav.querySelector('.nav-dropdown');
-      menuButton.addEventListener('click', () => {
-        const open = menuButton.getAttribute('aria-expanded') === 'true';
-        menuButton.setAttribute('aria-expanded', String(!open));
-        nav.classList.toggle('open', !open);
-      });
-      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-        menuButton.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('open');
-        projectMenu.removeAttribute('open');
-      }));
-      document.addEventListener('click', event => {
-        if (!projectMenu.contains(event.target)) projectMenu.removeAttribute('open');
-      });
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          const mobileMenuWasOpen = nav.classList.contains('open');
-          projectMenu.removeAttribute('open');
-          menuButton.setAttribute('aria-expanded', 'false');
-          nav.classList.remove('open');
-          if (mobileMenuWasOpen) menuButton.focus();
-        }
-      });
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      const agents = document.querySelectorAll('.agent-card');
+  <script>(()=>{const agents = document.querySelectorAll('.agent-card');
       const skills = document.querySelectorAll('.skill-card');
       document.getElementById('agent-count').textContent = String(agents.length);
       document.getElementById('skill-count').textContent = String(skills.length);
@@ -768,8 +716,7 @@
         chain.classList.remove('has-active');
         nodes.forEach(node => { node.classList.remove('active', 'neighbor'); node.setAttribute('aria-pressed', 'false'); });
       });
-    }());
-  </script>
+    })();</script>
+<script src="assets/portfolio.js"></script>
 </body>
 </html>
-
