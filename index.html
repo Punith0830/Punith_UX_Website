@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Punith Kumar Ravikumar — Senior UX Designer creating clear, user-centred B2B products and digital experiences.">
+  <meta name="description" content="Punith Kumar Ravikumar — UX Design Professional combining human-centred methods with AI-integrated workflows to create clear digital products.">
   <meta name="theme-color" content="#000000">
-  <title>Punith Kumar Ravikumar — Senior UX Designer</title>
+  <title>Punith Kumar Ravikumar — UX Design Professional</title>
   <script>(()=>{const preferred=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';let saved;try{saved=localStorage.getItem('portfolio-theme')}catch{}document.documentElement.dataset.theme=saved==='light'||saved==='dark'?saved:preferred;})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,7 +161,7 @@
     .hero-intro p { margin: 0; color: var(--body); max-width: 42rem; font-size: clamp(1rem, 1.45vw, 1.25rem); }
     .location { font-size: .77rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
     .portrait-panel { position: relative; min-height: 560px; overflow: hidden; background: #f0f0f0; }
-    .portrait-panel img { width: 100%; height: 100%; object-fit: cover; object-position: center center; filter: contrast(1.03) saturate(.94); transform: scale(1.02); }
+    .portrait-panel img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: contrast(1.03) saturate(.96); transform: scale(1.02); }
     .portrait-panel::after { content: ""; position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
     .portrait-label { position: absolute; z-index: 2; left: 1.5rem; bottom: 1.5rem; margin: 0; color: #fff; font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
     .tricolor { display: grid; grid-template-columns: repeat(3, 1fr); height: 4px; width: min(270px, 45vw); }
@@ -214,6 +214,14 @@
     .role h3 { margin: 0; font-size: clamp(1.25rem, 2vw, 1.85rem); font-weight: 600; line-height: 1.2; }
     .role p { margin: .45rem 0 0; color: var(--body); }
 
+    .recognition { padding-block: clamp(5rem, 10vw, 9rem); border-top: 1px solid var(--line); }
+    .recognition-grid { display: grid; grid-template-columns: .75fr 1.4fr; gap: clamp(3rem, 8vw, 8rem); }
+    .awards-list { border-top: 1px solid var(--line); }
+    .award { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 2rem; padding-block: clamp(1.75rem, 3vw, 2.5rem); border-bottom: 1px solid var(--line); }
+    .award-year { color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .award h3 { margin: 0; font-size: clamp(1.35rem, 2.5vw, 2.35rem); font-weight: 600; line-height: 1.1; letter-spacing: -.025em; }
+    .award p { margin: .65rem 0 0; color: var(--body); font-size: 1rem; }
+
     .process { padding-block: clamp(5rem, 9vw, 8rem); background: var(--process-bg); color: var(--process-fg); }
     .process .eyebrow { color: var(--process-muted); }
     .process-head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 4rem; }
@@ -262,7 +270,7 @@
 
     @media (max-width: 1024px) {
       .hero-grid { grid-template-columns: 1.25fr .75fr; gap: 2rem; }
-      .about-grid, .experience-grid { grid-template-columns: 1fr; }
+      .about-grid, .experience-grid, .recognition-grid { grid-template-columns: 1fr; }
       .about-copy { margin-left: 18vw; }
       .projects { grid-template-columns: 1fr; }
       .process-head { grid-template-columns: 1fr; }
@@ -305,6 +313,7 @@
       .stat + .stat { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
       .work-head { align-items: start; flex-direction: column; }
       .role { grid-template-columns: 1fr; gap: .5rem; }
+      .award { grid-template-columns: 1fr; gap: .6rem; }
       .steps { grid-template-columns: 1fr; }
       .step + .step { border-left: 0; border-top: 1px solid var(--process-line); padding-left: 0; }
       .details-grid { grid-template-columns: 1fr; }
@@ -371,18 +380,18 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div class="hero-copy portfolio-reveal">
-          <p class="eyebrow">Senior UX Designer · HCI · Tamil Nadu, India</p>
+          <p class="eyebrow">UX Design Professional · HCI · AI-integrated design</p>
           <h1><span>Research.</span><span class="outline">Design.</span><span>Impact.</span></h1>
           <div class="hero-intro">
             <div>
               <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
               <p class="location">Coimbatore · India</p>
             </div>
-            <p>Creating clear, user-centred B2B products by turning complex requirements into intuitive systems that work for people and development teams.</p>
+            <p>I combine proven UX research and design methods with AI-integrated workflows to turn complex requirements into clear, testable product experiences.</p>
           </div>
         </div>
         <figure class="portrait-panel portfolio-reveal">
-          <img fetchpriority="high" decoding="async" src="assets/portfolio/5eec0a1a7bde6658.webp" alt="Punith Kumar Ravikumar standing outdoors in a green sweater" width="885" height="885">
+          <img fetchpriority="high" decoding="async" src="assets/portfolio/punith-portrait-2026.webp" alt="Punith Kumar Ravikumar standing outdoors in an olive jacket" width="1600" height="1600">
           <figcaption class="portrait-label">Punith Kumar Ravikumar</figcaption>
         </figure>
       </div>
@@ -416,19 +425,19 @@
         </div>
         <div class="projects">
           <a class="project" href="routiq.html" aria-label="Routiq — explore case study">
-            <img decoding="async" src="assets/portfolio/9641214526eb728a.png" alt="Routiq daily habit dashboard with progress, habit completion and Coach guidance" width="375" height="988" loading="lazy">
+            <img decoding="async" src="assets/portfolio/project-routiq-home.webp" alt="Routiq daily habit dashboard presented in a mobile device mockup" width="1600" height="1000" loading="lazy">
             <div class="project-copy"><span class="project-index">01 / 04</span><p class="project-tag">Product design · Habit tracking</p><h3>Routiq</h3><p>A daily habit experience for tracking routines, understanding progress and finding a manageable next step.</p><span class="project-cta">Explore case study</span></div>
           </a>
           <a class="project" href="chotadhobi.html" aria-label="Chota Dhobi — explore case study">
-            <img loading="lazy" decoding="async" src="assets/portfolio/5c9a9a2b0102a9a8.webp" alt="Chota Dhobi laundry app shown on a phone" width="808" height="632">
+            <img loading="lazy" decoding="async" src="assets/portfolio/project-chotadhobi-home.webp" alt="Chota Dhobi laundry queue presented in a mobile device mockup" width="1600" height="1000">
             <div class="project-copy"><span class="project-index">02 / 04</span><p class="project-tag">Service design · Mobile</p><h3>Chota Dhobi</h3><p>A mobile service for managing laundry plans, wash status and everyday tasks.</p><span class="project-cta">Explore case study</span></div>
           </a>
           <a class="project" href="myfuturejobs.html" aria-label="MyFuture Jobs — explore case study">
-            <img loading="lazy" decoding="async" src="assets/portfolio/9696204fd19399a4.webp" alt="MyFuture Jobs mobile application dashboard" width="808" height="632">
+            <img loading="lazy" decoding="async" src="assets/portfolio/project-myfuturejobs-home.webp" alt="MyFuture Jobs application dashboard presented in a mobile device mockup" width="1600" height="1000">
             <div class="project-copy"><span class="project-index">03 / 04</span><p class="project-tag">Product design · Mobile</p><h3>MyFuture Jobs</h3><p>A clearer job-search experience for discovering roles, tracking applications and managing a professional profile.</p><span class="project-cta">Explore case study</span></div>
           </a>
           <a class="project" href="esgplatform.html" aria-label="ESG Platform — explore case study">
-            <img loading="lazy" decoding="async" src="assets/portfolio/4794f1e598fdcfd3.webp" alt="Sustainability ESG reporting dashboard" width="690" height="539">
+            <img loading="lazy" decoding="async" src="assets/portfolio/project-esg-home.webp" alt="ESG reporting dashboard presented in a browser mockup" width="1600" height="1000">
             <div class="project-copy"><span class="project-index">04 / 04</span><p class="project-tag">Enterprise · Dashboard</p><h3>ESG Platform</h3><p>An information-rich reporting experience for tracking sustainability performance.</p><span class="project-cta">Explore case study</span></div>
           </a>
         </div>
@@ -442,11 +451,30 @@
           <h2 class="section-title portfolio-reveal">From industry to interaction.</h2>
         </div>
         <div class="timeline portfolio-reveal">
-          <article class="role"><div class="role-time">Current</div><div><h3>Senior UX Designer</h3><p>Mettler-Toledo International · Coimbatore</p></div></article>
+          <article class="role"><div class="role-time">Current</div><div><h3>UX Design Professional</h3><p>Mettler-Toledo International · Coimbatore</p></div></article>
           <article class="role"><div class="role-time">Dec 2024 — Aug 2025</div><div><h3>UI/UX Designer Lead</h3><p>MindGraph · Coimbatore</p></div></article>
           <article class="role"><div class="role-time">May 2023 — Nov 2024</div><div><h3>UI/UX Designer</h3><p>MindGraph · Coimbatore</p></div></article>
           <article class="role"><div class="role-time">Mar 2022 — May 2023</div><div><h3>UI/UX Designer</h3><p>Tabtree Software Solutions</p></div></article>
           <article class="role"><div class="role-time">Mar 2019 — Feb 2022</div><div><h3>Assistant Industrial Engineer</h3><p>Bachi Shoes Section, Tata International Ltd</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="recognition" id="recognition" aria-labelledby="recognition-title">
+      <div class="shell recognition-grid">
+        <div>
+          <p class="eyebrow">Recognition &amp; awards</p>
+          <h2 class="section-title portfolio-reveal" id="recognition-title">Work recognised by the team.</h2>
+        </div>
+        <div class="awards-list portfolio-reveal">
+          <article class="award">
+            <div class="award-year">2026</div>
+            <div><h3>Team Excellence Award</h3><p>Asset+ Web Project</p></div>
+          </article>
+          <article class="award">
+            <div class="award-year">2023</div>
+            <div><h3>Top Innovation Award</h3><p>Delegate Mobile App</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -483,7 +511,7 @@
           <article class="detail-card">
 <h3>Certifications</h3>
 <ul class="detail-list">
-  <li hidden><strong>AI for Designers</strong><span>UXmint Academy · Sep 2026—Oct 2026</span></li>
+  <li><strong>AI for Designers</strong><span>UXmint Academy · Sep 2026—Oct 2026</span></li>
   <li><strong>Human Computer Interaction: Foundations of UX Design</strong><span>Interaction Design Foundation · Mar 2026</span></li>
   <li><strong>Develop Your AI Prompt Engineering Skills</strong><span>LinkedIn · Jul 2024</span></li>
   <li><strong>Spline Design</strong><span>Udemy · Jan 2024</span></li>
