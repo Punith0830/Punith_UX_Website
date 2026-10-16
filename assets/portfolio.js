@@ -90,6 +90,12 @@
     update();
   }
 
+  const homeHero = document.querySelector('.home-hero');
+  if (homeHero && !reduced.matches) {
+    root.classList.add('portfolio-motion-ready');
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('portfolio-motion-entered')));
+  }
+
   let targets = [...document.querySelectorAll('.portfolio-reveal')];
   if (!targets.length) {
     const selectors = '.section-head,.hero-copy,.hero-inner,.intro-card,.research-block,.chapter-label,.steps,.flow-card,.check-panel,.lesson,.finish .shell,.agent-card,.skill-group,.layer,.stage,.memory-card,.info-layer,.tree-card,.guardrail,.system-diagram,.pk-contact-inner';
@@ -126,16 +132,44 @@
     reduced.addEventListener('change', event => { if (event.matches) revealAll(); });
   }
 
-  if (!('IntersectionObserver' in window) || !window.CSS || !CSS.supports('translate', '0 1px')) return;
+  const supportsTranslate = window.CSS && CSS.supports('translate', '0 1px');
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const magneticTargets = supportsTranslate
+    ? [...document.querySelectorAll('main .button, main .btn, main .contact-button, main .pk-contact-button')]
+    : [];
+  function resetMagnetic(target) {
+    target.style.removeProperty('--portfolio-magnetic-x');
+    target.style.removeProperty('--portfolio-magnetic-y');
+  }
+  magneticTargets.forEach(target => {
+    target.dataset.portfolioMagnetic = '';
+    target.addEventListener('pointermove', event => {
+      if (!finePointer.matches || reduced.matches) return;
+      const rect = target.getBoundingClientRect();
+      const x = Math.max(-5, Math.min(5, (event.clientX - rect.left - rect.width / 2) * .12));
+      const y = Math.max(-5, Math.min(5, (event.clientY - rect.top - rect.height / 2) * .12));
+      target.style.setProperty('--portfolio-magnetic-x', `${x.toFixed(2)}px`);
+      target.style.setProperty('--portfolio-magnetic-y', `${y.toFixed(2)}px`);
+    }, { passive: true });
+    target.addEventListener('pointerleave', () => resetMagnetic(target));
+    target.addEventListener('blur', () => resetMagnetic(target));
+  });
+  finePointer.addEventListener('change', () => magneticTargets.forEach(resetMagnetic));
+  reduced.addEventListener('change', event => { if (event.matches) magneticTargets.forEach(resetMagnetic); });
+
+  if (!supportsTranslate) return;
   const parallaxEnabled = matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)');
   const visuals = [];
   const decoration = document.querySelector('.demo-stage') || document.querySelector('.hero');
   if (decoration) { decoration.dataset.portfolioParallax = 'decoration'; visuals.push(decoration); }
-  document.querySelectorAll('.project img,.hero-media img,.showcase img,.mockup img').forEach((el, index) => {
+  document.querySelectorAll('.hero-media img,.showcase img,.mockup img').forEach((el, index) => {
     if (index < 8) { el.dataset.portfolioParallax = 'image'; visuals.push(el); }
   });
-  if (!visuals.length) return;
+  const heroLayers = [...document.querySelectorAll('[data-portfolio-hero-depth]')];
+  const projectCards = [...document.querySelectorAll('.work .project')];
+  if (!visuals.length && !heroLayers.length && !projectCards.length) return;
   const active = new Set(); let observer, frame = 0, printing = false;
+  const clamp = (min, max, value) => Math.max(min, Math.min(max, value));
   function update() {
     frame = 0;
     if (!parallaxEnabled.matches || printing) return;
@@ -145,26 +179,74 @@
       return [el, Math.max(-15, Math.min(15, (innerHeight / 2 - (rect.top - previous + rect.height / 2)) * .035))];
     });
     offsets.forEach(([el, y]) => el.style.setProperty('--portfolio-parallax-y', `${y.toFixed(2)}px`));
+    heroLayers.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < -80 || rect.top > innerHeight + 80) {
+        el.style.removeProperty('--portfolio-hero-y');
+        return;
+      }
+      const depth = Number.parseFloat(el.dataset.portfolioHeroDepth) || .25;
+      const y = clamp(-18, 18, (innerHeight / 2 - (rect.top + rect.height / 2)) * .04 * depth);
+      el.style.setProperty('--portfolio-hero-y', `${y.toFixed(2)}px`);
+    });
+    const stickyTop = innerWidth <= 900 ? 64 : 68;
+    projectCards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.bottom < -100 || rect.top > innerHeight + 100) {
+        card.style.removeProperty('--portfolio-card-scale');
+        card.style.removeProperty('--portfolio-card-brightness');
+        card.style.removeProperty('--portfolio-project-image-y');
+        card.style.removeProperty('--portfolio-project-copy-y');
+        card.style.removeProperty('--portfolio-project-image-scale');
+        return;
+      }
+      const travel = clamp(-1, 1, (innerHeight / 2 - (rect.top + rect.height / 2)) / Math.max(innerHeight, 1));
+      card.style.setProperty('--portfolio-project-image-y', `${(travel * 12).toFixed(2)}px`);
+      card.style.setProperty('--portfolio-project-copy-y', `${(-travel * 6).toFixed(2)}px`);
+      card.style.setProperty('--portfolio-project-image-scale', (1 + Math.abs(travel) * .012).toFixed(4));
+      const next = projectCards[index + 1];
+      if (!next) {
+        card.style.setProperty('--portfolio-card-scale', '1');
+        card.style.setProperty('--portfolio-card-brightness', '1');
+        return;
+      }
+      const approach = clamp(0, 1, (innerHeight - next.getBoundingClientRect().top) / Math.max(innerHeight - stickyTop, 1));
+      card.style.setProperty('--portfolio-card-scale', (1 - approach * .028).toFixed(4));
+      card.style.setProperty('--portfolio-card-brightness', (1 - approach * .14).toFixed(4));
+    });
   }
-  const schedule = () => { if (active.size && !frame && !printing) frame = requestAnimationFrame(update); };
+  const schedule = () => {
+    if ((active.size || heroLayers.length || projectCards.length) && !frame && !printing) frame = requestAnimationFrame(update);
+  };
   function stop() {
     if (observer) observer.disconnect();
     active.clear(); cancelAnimationFrame(frame); frame = 0;
     removeEventListener('scroll', schedule); removeEventListener('resize', schedule);
     visuals.forEach(el => el.style.removeProperty('--portfolio-parallax-y'));
+    heroLayers.forEach(el => el.style.removeProperty('--portfolio-hero-y'));
+    projectCards.forEach(card => {
+      card.style.removeProperty('--portfolio-card-scale');
+      card.style.removeProperty('--portfolio-card-brightness');
+      card.style.removeProperty('--portfolio-project-image-y');
+      card.style.removeProperty('--portfolio-project-copy-y');
+      card.style.removeProperty('--portfolio-project-image-scale');
+    });
   }
   function configure() {
     stop();
     if (!parallaxEnabled.matches || printing) return;
-    observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) active.add(entry.target);
-        else { active.delete(entry.target); entry.target.style.removeProperty('--portfolio-parallax-y'); }
-      });
-      schedule();
-    }, { rootMargin: '60px 0px', threshold: 0 });
-    visuals.forEach(el => observer.observe(el));
+    if ('IntersectionObserver' in window && visuals.length) {
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) active.add(entry.target);
+          else { active.delete(entry.target); entry.target.style.removeProperty('--portfolio-parallax-y'); }
+        });
+        schedule();
+      }, { rootMargin: '60px 0px', threshold: 0 });
+      visuals.forEach(el => observer.observe(el));
+    } else visuals.forEach(el => active.add(el));
     addEventListener('scroll', schedule, { passive: true }); addEventListener('resize', schedule, { passive: true });
+    schedule();
   }
   parallaxEnabled.addEventListener('change', configure);
   addEventListener('beforeprint', () => { printing = true; stop(); });

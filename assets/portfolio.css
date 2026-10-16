@@ -35,12 +35,27 @@ html{scrollbar-gutter:stable}
 @media(prefers-reduced-motion:reduce){.portfolio-reveal{transition:none!important}.portfolio-reveal[data-scroll-pending]{opacity:1;transform:none}}
 @media print{.portfolio-reveal[data-scroll-pending]{opacity:1;transform:none}}
 
+/* Homepage opening sequence. Content remains visible unless motion has initialized. */
+.portfolio-motion-ready .home-hero [data-hero-enter],
+.portfolio-motion-ready .home-hero [data-hero-line]{opacity:0;transform:translateY(24px)}
+.portfolio-motion-ready .home-hero [data-hero-line]{clip-path:inset(0 0 100% 0)}
+.portfolio-motion-ready.portfolio-motion-entered .home-hero [data-hero-enter],
+.portfolio-motion-ready.portfolio-motion-entered .home-hero [data-hero-line]{opacity:1;transform:translateY(0);clip-path:inset(0);transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1),clip-path .85s cubic-bezier(.22,.61,.36,1)}
+.portfolio-motion-entered .home-hero [data-hero-enter="eyebrow"]{transition-delay:.04s}
+.portfolio-motion-entered .home-hero [data-hero-line]:nth-child(1){transition-delay:.12s}
+.portfolio-motion-entered .home-hero [data-hero-line]:nth-child(2){transition-delay:.22s}
+.portfolio-motion-entered .home-hero [data-hero-line]:nth-child(3){transition-delay:.32s}
+.portfolio-motion-entered .home-hero [data-hero-enter="intro"]{transition-delay:.44s}
+.portfolio-motion-entered .home-hero [data-hero-enter="portrait"]{transition-delay:.5s}
+
 
 @media(min-width:901px) and (prefers-reduced-motion:no-preference){
 [data-portfolio-parallax="image"]{translate:0 var(--portfolio-parallax-y,0px)}
 [data-portfolio-parallax="decoration"]::before{translate:0 var(--portfolio-parallax-y,0px)}
+[data-portfolio-hero-depth]{translate:0 var(--portfolio-hero-y,0px)}
+[data-portfolio-magnetic]{translate:var(--portfolio-magnetic-x,0px) var(--portfolio-magnetic-y,0px)}
 }
-@media print{[data-portfolio-parallax],[data-portfolio-parallax]::before{translate:none!important}}
+@media print{[data-portfolio-parallax],[data-portfolio-parallax]::before,[data-portfolio-hero-depth],[data-portfolio-magnetic]{translate:none!important}}
 
 /* Responsive, keyboard and theme corrections found in the audit. */
 :root{--portfolio-header-bg:rgba(0,0,0,.94);--portfolio-header-ink:#f5f5f5;--portfolio-menu-bg:#090909;--portfolio-header-line:#444;--portfolio-font:BMWTypeNextLatin,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;--portfolio-body-font:"BMWTypeNextLatin Light",BMWTypeNextLatin,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;--portfolio-header-height:68px}
@@ -62,12 +77,13 @@ p,li,code,pre,.contact-actions a,.pk-contact-actions a{overflow-wrap:anywhere}
 .contact h2,.pk-contact h2{font-family:var(--portfolio-font);font-weight:700;letter-spacing:-.06em}
 .contact .contact-actions,.pk-contact .pk-contact-actions{font-family:var(--portfolio-body-font)}
 .progress,.read-progress{width:100%!important;transform:scaleX(0);transform-origin:left;transition:none!important;pointer-events:none}
+.site-progress{position:fixed;z-index:1002;inset:0 auto auto 0;height:3px;background:linear-gradient(90deg,#0066b1,#1c69d4,#e22718)}
 button,summary{touch-action:manipulation}
 @media(max-width:900px){:root{--portfolio-header-height:64px}.site-header .nav-links,.pk-site-header .pk-nav-links{background:var(--portfolio-menu-bg);padding-top:16px;padding-bottom:24px}.site-header .nav-dropdown-menu,.pk-site-header .pk-nav-dropdown-menu{background:var(--portfolio-menu-bg)}.site-header .nav-links>a,.site-header .nav-dropdown>summary,.pk-site-header .pk-nav-links>a,.pk-site-header .pk-nav-dropdown>summary{min-height:48px}.site-header .theme-toggle,.pk-site-header .pk-theme-toggle{min-height:48px;border:0;border-bottom:1px solid var(--portfolio-header-line)}.contact-inner,.pk-contact-inner{grid-template-columns:1fr}.contact h2,.pk-contact h2{font-size:clamp(3rem,8vw,5rem)}body.menu-open{overflow:hidden}.work .project{top:64px;height:calc(100svh - 64px)}.routiq-page-nav .read-progress{top:64px}}
 @media(max-width:600px){.contact-actions,.pk-contact-actions{max-width:100%;gap:12px}.contact .button,.contact .contact-button,.pk-contact .pk-contact-button{font-size:.7rem;max-width:100%;padding:14px 16px;overflow-wrap:anywhere}.routiq-page-nav{padding-top:88px}.demo-stage::before{width:min(360px,100%);height:auto;aspect-ratio:1}.footer-top{flex-direction:column;gap:12px}}
-@media(max-height:680px) and (max-width:900px){.work .project{position:relative;top:auto;height:auto;min-height:calc(100svh - 64px)}.work .project img{height:min(45vh,280px)}.work .project-copy{align-self:start}}
-@media(max-height:520px){.work .project{position:relative;top:auto;height:auto;min-height:calc(100svh - var(--portfolio-header-height))}.site-header .nav-links,.pk-site-header .pk-nav-links{max-height:calc(100dvh - 64px)}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}.portfolio-reveal[data-scroll-pending]{opacity:1;transform:none}.work .project{position:relative;top:auto}}
+@media(max-height:680px) and (max-width:900px){.work .project{position:relative;top:auto;height:auto;min-height:calc(100svh - 64px)}.work .project:not(:last-child){margin-bottom:0}.work .project-visual{height:min(45vh,300px)}.work .project img{height:100%}.work .project-copy{align-self:start}}
+@media(max-height:520px){.work .project{position:relative;top:auto;height:auto;min-height:calc(100svh - var(--portfolio-header-height))}.work .project:not(:last-child){margin-bottom:0}.site-header .nav-links,.pk-site-header .pk-nav-links{max-height:calc(100dvh - 64px)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important}.portfolio-reveal[data-scroll-pending],.portfolio-motion-ready .home-hero [data-hero-enter],.portfolio-motion-ready .home-hero [data-hero-line]{opacity:1;transform:none;clip-path:none}.work .project{position:relative;top:auto}[data-portfolio-parallax],[data-portfolio-hero-depth],[data-portfolio-magnetic]{translate:none!important}}
 @media print{.site-header,.pk-site-header,.contact,.pk-contact,.progress,.read-progress{display:none!important}.portfolio-reveal{opacity:1!important;transform:none!important}body{background:white;color:black}}
 
 /* Text contrast corrections, preserving each project's brand palette. */

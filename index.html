@@ -323,33 +323,41 @@
   </style>
 <style id="portfolio-project-stack">
 /* Full-screen project stack: native sticky positioning, no scroll library. */
-.work{padding-bottom:0;overflow:visible}
+.work{padding-top:clamp(56px,8vw,104px);padding-bottom:0;overflow:visible}
 .work>.shell{width:100%;max-width:none;padding-inline:0}
-.work .work-head{width:min(100%,var(--portfolio-layout-max));margin-inline:auto;padding-inline:var(--portfolio-layout-gutter);margin-bottom:clamp(40px,6vw,80px)}
+.work .work-head{width:min(100%,var(--portfolio-layout-max));margin-inline:auto;padding-inline:var(--portfolio-layout-gutter);margin-bottom:clamp(36px,5vw,64px)}
 .work .projects{display:block;position:relative;isolation:isolate;gap:0;overflow:visible}
-.work .project{--project-accent:#87c8e8;--panel-bg:#071d28;display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);align-items:center;position:sticky;top:68px;height:calc(100vh - 68px);height:calc(100svh - 68px);min-height:480px;width:100%;aspect-ratio:auto;margin:0;padding:clamp(32px,5vw,80px) var(--portfolio-layout-gutter);border:0;border-top:1px solid rgba(255,255,255,.16);background:var(--panel-bg);box-shadow:0 -14px 40px rgba(0,0,0,.18);transform:none;transition:none;overflow:hidden}
+.work .project{--project-accent:#87c8e8;--panel-bg:#071d28;display:grid;grid-template-columns:minmax(280px,.4fr) minmax(0,.6fr);gap:clamp(32px,5vw,88px);align-items:center;position:sticky;top:68px;height:calc(100vh - 68px);height:calc(100svh - 68px);min-height:520px;width:100%;aspect-ratio:auto;margin:0;padding:clamp(32px,5vw,72px) var(--portfolio-layout-gutter);border:0;border-top:1px solid rgba(255,255,255,.16);background:var(--panel-bg);box-shadow:0 -18px 54px rgba(0,0,0,.26);transform:scale(var(--portfolio-card-scale,1));transform-origin:center top;filter:brightness(var(--portfolio-card-brightness,1));transition:transform .16s linear,filter .16s linear;overflow:hidden}
+.work .project:not(:last-child){margin-bottom:clamp(220px,38svh,380px)}
 .work .project:nth-child(1){z-index:1;--panel-bg:#172018;--project-accent:#dceeb1}.work .project:nth-child(2){z-index:2;--panel-bg:#071d28;--project-accent:#87c8e8}.work .project:nth-child(3){z-index:3;--panel-bg:#201b46;--project-accent:#c7bcff}.work .project:nth-child(4){z-index:4;--panel-bg:#081e28;--project-accent:#76d8c2}
 .work .project::before{inset:0;background:none;filter:none;transform:none;pointer-events:none}
 .work .project::after{background:radial-gradient(ellipse at 80% 35%,rgba(255,255,255,.07),transparent 65%);z-index:0}
-.work .project img{grid-column:2;grid-row:1;position:relative;z-index:1;display:block;width:100%;height:100%;max-height:calc(100svh - 180px);min-height:0;object-fit:contain;border-radius:18px;filter:none;transition:none}
-.work .project-copy{grid-column:1;grid-row:1;position:relative;inset:auto;padding:0 clamp(24px,4vw,64px) 0 0;color:white;text-shadow:none;z-index:2;align-self:center}
-.work .project-index{display:block;margin:0 0 clamp(24px,5vh,48px);color:var(--project-accent);font-size:.8rem;font-weight:600;letter-spacing:.16em}
+.work .project-visual{grid-column:2;grid-row:1;position:relative;z-index:1;display:grid;place-items:center;min-width:0;min-height:0;width:100%;height:min(74vh,720px);max-height:calc(100svh - 132px);padding:clamp(14px,2vw,28px);overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:clamp(18px,2vw,28px);background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));box-shadow:0 30px 80px rgba(0,0,0,.22)}
+.work .project-visual::before{content:"";position:absolute;width:min(48vw,620px);aspect-ratio:1;border:1px solid rgba(255,255,255,.08);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.055),transparent 66%);pointer-events:none}
+.work .project img{position:relative;z-index:1;display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;border-radius:14px;filter:none;translate:0 var(--portfolio-project-image-y,0);scale:var(--portfolio-project-image-scale,1);transition:translate .16s linear,scale .16s linear}
+.work .project-copy{grid-column:1;grid-row:1;position:relative;inset:auto;min-width:0;max-width:38rem;padding:0;color:white;text-shadow:none;z-index:2;align-self:center;translate:0 var(--portfolio-project-copy-y,0);transition:translate .16s linear}
+.work .project-index{display:flex;align-items:center;gap:14px;margin:0 0 clamp(24px,5vh,48px);color:var(--project-accent);font-size:.8rem;font-weight:600;letter-spacing:.16em}
+.work .project-index::after{content:"";width:min(84px,8vw);height:1px;background:currentColor;opacity:.7}
 .work .project .project-tag{color:var(--project-accent);font-size:.72rem;margin:0 0 20px;letter-spacing:.14em}
-.work .project h3{font-size:clamp(2.5rem,5.4vw,5.5rem);line-height:.95;letter-spacing:-.055em;margin:0 0 24px;text-wrap:balance}
+.work .project h3{font-size:clamp(2.75rem,5.4vw,5.75rem);line-height:.92;letter-spacing:-.055em;margin:0 0 24px;text-wrap:balance;overflow-wrap:normal}
 .work .project h3::after{display:none}
 .work .project-copy>p:not(.project-tag){font-size:clamp(15px,1.25vw,18px);line-height:1.65;max-width:36ch;color:#d6dce0;margin:0}
 .work .project-cta{display:inline-flex;align-items:center;gap:20px;margin-top:32px;padding:14px 0;border-bottom:1px solid var(--project-accent);color:white;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 .work .project-cta::after{content:"↗";font-size:1.2rem}
-.work .project:hover,.work .project:focus-visible,.work .project:active{transform:none}.work .project:hover img,.work .project:focus-visible img{filter:none}.work .project:focus-visible{outline:3px solid var(--project-accent);outline-offset:-6px}
-@media(max-width:767px){.work .project{top:64px;height:calc(100svh - 64px);min-height:540px;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:20px;padding:24px var(--portfolio-layout-gutter) 28px}.work .project img{grid-column:1;grid-row:1;max-height:100%;width:100%;height:100%;border-radius:12px}.work .project-copy{grid-column:1;grid-row:2;padding:0}.work .project-index{margin-bottom:12px;font-size:.7rem}.work .project .project-tag{margin-bottom:10px;font-size:.65rem}.work .project h3{font-size:clamp(2rem,7vw,3rem);margin-bottom:12px}.work .project-copy>p:not(.project-tag){font-size:14px;line-height:1.5;max-width:48ch}.work .project-cta{margin-top:16px;padding:9px 0;font-size:.7rem}}
-@media(max-height:600px) and (min-width:768px){.work .project{min-height:0;padding-block:24px}.work .project img{max-height:calc(100svh - 120px)}.work .project-index{margin-bottom:16px}.work .project h3{font-size:clamp(2rem,4vw,4rem);margin-bottom:16px}.work .project-cta{margin-top:16px}}
-@media(prefers-reduced-motion:reduce){.work .project{position:relative;top:auto}}
+.work .project:hover,.work .project:focus-visible,.work .project:active{transform:scale(var(--portfolio-card-scale,1))}.work .project:hover img,.work .project:focus-visible img{filter:none}.work .project:focus-visible{outline:3px solid var(--project-accent);outline-offset:-6px}
+@media(max-width:1099px){.work .project{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:clamp(18px,3vh,30px);padding:clamp(26px,4vw,44px) var(--portfolio-layout-gutter)}.work .project-visual{grid-column:1;grid-row:1;height:100%;max-height:none;padding:clamp(12px,2vw,22px)}.work .project-copy{grid-column:1;grid-row:2;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:end;max-width:none}.work .project-index,.work .project .project-tag,.work .project h3{grid-column:1}.work .project-index{margin-bottom:10px}.work .project .project-tag{margin-bottom:8px}.work .project h3{margin-bottom:10px;font-size:clamp(2.2rem,6vw,4.25rem)}.work .project-copy>p:not(.project-tag){grid-column:1;max-width:54ch;font-size:15px;line-height:1.5}.work .project-cta{grid-column:2;grid-row:1/5;align-self:end;margin:0 0 2px;white-space:nowrap}}
+@media(max-width:767px){.work{padding-top:48px}.work .work-head{margin-bottom:32px}.work .project{top:64px;height:calc(100svh - 64px);min-height:560px;gap:16px;padding:20px var(--portfolio-layout-gutter) 24px}.work .project:not(:last-child){margin-bottom:16svh}.work .project-visual{min-height:0;border-radius:16px;padding:10px}.work .project img{border-radius:10px}.work .project-copy{display:block}.work .project-index{margin-bottom:8px;font-size:.66rem}.work .project-index::after{width:44px}.work .project .project-tag{margin-bottom:7px;font-size:.62rem}.work .project h3{font-size:clamp(2rem,9vw,3.15rem);margin-bottom:8px}.work .project-copy>p:not(.project-tag){font-size:13px;line-height:1.42;max-width:45ch}.work .project-cta{margin-top:10px;padding:7px 0;font-size:.65rem}}
+@media(max-width:430px){.work .project{grid-template-rows:minmax(180px,1fr) auto}.work .project h3{font-size:clamp(1.9rem,10.5vw,2.75rem)}.work .project-copy>p:not(.project-tag){font-size:12.5px}.work .project-cta{letter-spacing:.09em}}
+@media(max-width:360px){.home-hero h1{font-size:16vw}}
+@media(max-height:700px) and (min-width:768px){.work .project{min-height:0;padding-block:22px;gap:24px}.work .project-visual{height:calc(100svh - 112px)}.work .project-index{margin-bottom:14px}.work .project h3{font-size:clamp(2rem,4vw,4rem);margin-bottom:14px}.work .project-cta{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){.work .project{position:relative;top:auto;transform:none;filter:none}.work .project:not(:last-child){margin-bottom:0}.work .project img,.work .project-copy{translate:none;scale:1}}
 @media print{.work .project{position:relative;top:auto;height:auto;min-height:0;break-inside:avoid;box-shadow:none;margin-bottom:24px}.work .project img{height:240px}.work .project-copy{color:black}.work .project-cta{display:none}}
 </style>
 <link rel="stylesheet" href="assets/portfolio.css">
 </head>
 <body data-page="index">
   <a class="skip-link" href="#top">Skip to main content</a>
+  <div class="progress site-progress" aria-hidden="true"></div>
   <header class="site-header">
     <div class="shell nav-wrap">
       <a class="brand" href="index.html" aria-label="Punith Kumar Ravikumar, home">
@@ -377,12 +385,12 @@
   </header>
 
   <main id="top" tabindex="-1">
-    <section class="hero">
+    <section class="hero home-hero">
       <div class="shell hero-grid">
-        <div class="hero-copy portfolio-reveal">
-          <p class="eyebrow">UX Design Professional · HCI · AI-integrated design</p>
-          <h1><span>Research.</span><span class="outline">Design.</span><span>Impact.</span></h1>
-          <div class="hero-intro">
+        <div class="hero-copy">
+          <p class="eyebrow" data-hero-enter="eyebrow">UX Design Professional · HCI · AI-integrated design</p>
+          <h1 data-portfolio-hero-depth="0.35"><span data-hero-line>Research.</span><span class="outline" data-hero-line>Design.</span><span data-hero-line>Impact.</span></h1>
+          <div class="hero-intro" data-hero-enter="intro" data-portfolio-hero-depth="0.18">
             <div>
               <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
               <p class="location">Coimbatore · India</p>
@@ -390,10 +398,39 @@
             <p>I combine proven UX research and design methods with AI-integrated workflows to turn complex requirements into clear, testable product experiences.</p>
           </div>
         </div>
-        <figure class="portrait-panel portfolio-reveal">
-          <img fetchpriority="high" decoding="async" src="assets/portfolio/punith-portrait-2026.webp" alt="Punith Kumar Ravikumar standing outdoors in an olive jacket" width="1600" height="1600">
+        <figure class="portrait-panel" data-hero-enter="portrait">
+          <img fetchpriority="high" decoding="async" src="assets/portfolio/punith-portrait-2026.webp" alt="Punith Kumar Ravikumar standing outdoors in an olive jacket" width="1600" height="1600" data-portfolio-hero-depth="0.55">
           <figcaption class="portrait-label">Punith Kumar Ravikumar</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="shell">
+        <div class="work-head portfolio-reveal">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2 class="section-title">Interfaces with a job to do.</h2>
+          </div>
+        </div>
+        <div class="projects">
+          <a class="project" href="routiq.html" aria-label="Routiq — explore case study">
+            <div class="project-visual"><img decoding="async" src="assets/portfolio/project-routiq-home.webp" alt="Routiq daily habit dashboard presented in a mobile device mockup" width="1600" height="1000" loading="lazy"></div>
+            <div class="project-copy"><span class="project-index">01 / 04</span><p class="project-tag">Product design · Habit tracking</p><h3>Routiq</h3><p>A daily habit experience for tracking routines, understanding progress and finding a manageable next step.</p><span class="project-cta">Explore case study</span></div>
+          </a>
+          <a class="project" href="chotadhobi.html" aria-label="Chota Dhobi — explore case study">
+            <div class="project-visual"><img loading="lazy" decoding="async" src="assets/portfolio/project-chotadhobi-home.webp" alt="Chota Dhobi laundry queue presented in a mobile device mockup" width="1600" height="1000"></div>
+            <div class="project-copy"><span class="project-index">02 / 04</span><p class="project-tag">Service design · Mobile</p><h3>Chota Dhobi</h3><p>A mobile service for managing laundry plans, wash status and everyday tasks.</p><span class="project-cta">Explore case study</span></div>
+          </a>
+          <a class="project" href="myfuturejobs.html" aria-label="MyFuture Jobs — explore case study">
+            <div class="project-visual"><img loading="lazy" decoding="async" src="assets/portfolio/project-myfuturejobs-home.webp" alt="MyFuture Jobs application dashboard presented in a mobile device mockup" width="1600" height="1000"></div>
+            <div class="project-copy"><span class="project-index">03 / 04</span><p class="project-tag">Product design · Mobile</p><h3>MyFuture Jobs</h3><p>A clearer job-search experience for discovering roles, tracking applications and managing a professional profile.</p><span class="project-cta">Explore case study</span></div>
+          </a>
+          <a class="project" href="esgplatform.html" aria-label="ESG Platform — explore case study">
+            <div class="project-visual"><img loading="lazy" decoding="async" src="assets/portfolio/project-esg-home.webp" alt="ESG reporting dashboard presented in a browser mockup" width="1600" height="1000"></div>
+            <div class="project-copy"><span class="project-index">04 / 04</span><p class="project-tag">Enterprise · Dashboard</p><h3>ESG Platform</h3><p>An information-rich reporting experience for tracking sustainability performance.</p><span class="project-cta">Explore case study</span></div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -411,35 +448,6 @@
             <div class="stat"><strong>40+</strong><span>Projects completed</span></div>
             <div class="stat"><strong>3+</strong><span>Industries served</span></div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="work" id="work">
-      <div class="shell">
-        <div class="work-head portfolio-reveal">
-          <div>
-            <p class="eyebrow">Selected work</p>
-            <h2 class="section-title">Interfaces with a job to do.</h2>
-          </div>
-        </div>
-        <div class="projects">
-          <a class="project" href="routiq.html" aria-label="Routiq — explore case study">
-            <img decoding="async" src="assets/portfolio/project-routiq-home.webp" alt="Routiq daily habit dashboard presented in a mobile device mockup" width="1600" height="1000" loading="lazy">
-            <div class="project-copy"><span class="project-index">01 / 04</span><p class="project-tag">Product design · Habit tracking</p><h3>Routiq</h3><p>A daily habit experience for tracking routines, understanding progress and finding a manageable next step.</p><span class="project-cta">Explore case study</span></div>
-          </a>
-          <a class="project" href="chotadhobi.html" aria-label="Chota Dhobi — explore case study">
-            <img loading="lazy" decoding="async" src="assets/portfolio/project-chotadhobi-home.webp" alt="Chota Dhobi laundry queue presented in a mobile device mockup" width="1600" height="1000">
-            <div class="project-copy"><span class="project-index">02 / 04</span><p class="project-tag">Service design · Mobile</p><h3>Chota Dhobi</h3><p>A mobile service for managing laundry plans, wash status and everyday tasks.</p><span class="project-cta">Explore case study</span></div>
-          </a>
-          <a class="project" href="myfuturejobs.html" aria-label="MyFuture Jobs — explore case study">
-            <img loading="lazy" decoding="async" src="assets/portfolio/project-myfuturejobs-home.webp" alt="MyFuture Jobs application dashboard presented in a mobile device mockup" width="1600" height="1000">
-            <div class="project-copy"><span class="project-index">03 / 04</span><p class="project-tag">Product design · Mobile</p><h3>MyFuture Jobs</h3><p>A clearer job-search experience for discovering roles, tracking applications and managing a professional profile.</p><span class="project-cta">Explore case study</span></div>
-          </a>
-          <a class="project" href="esgplatform.html" aria-label="ESG Platform — explore case study">
-            <img loading="lazy" decoding="async" src="assets/portfolio/project-esg-home.webp" alt="ESG reporting dashboard presented in a browser mockup" width="1600" height="1000">
-            <div class="project-copy"><span class="project-index">04 / 04</span><p class="project-tag">Enterprise · Dashboard</p><h3>ESG Platform</h3><p>An information-rich reporting experience for tracking sustainability performance.</p><span class="project-cta">Explore case study</span></div>
-          </a>
         </div>
       </div>
     </section>
