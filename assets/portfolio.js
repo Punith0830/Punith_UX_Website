@@ -104,14 +104,22 @@
         '.hero-inner > .hero-bottom'
       ];
       const textTargets = [...openingHero.querySelectorAll(revealSelectors.join(','))];
+      const delayStep = compact.matches ? 75 : 110;
       textTargets.forEach((target, index) => {
-        target.dataset.projectHeroEnter = target.matches('h1') ? 'title' : 'text';
-        target.style.setProperty('--project-hero-delay', `${60 + index * 90}ms`);
+        let role = 'intro';
+        if (target.matches('h1')) role = 'title';
+        else if (target.matches('.hero-lead, .lead, .lede, .hero-note')) role = 'body';
+        else if (target.matches('.meta, .chips, .hero-rule, .actions, .hero-facts, .hero-bottom')) role = 'support';
+        target.dataset.projectHeroEnter = role;
+        target.style.setProperty('--project-hero-delay', `${50 + index * delayStep}ms`);
       });
       const visual = openingHero.querySelector('.hero-media, .demo-stage');
       if (visual) {
         visual.dataset.projectHeroVisual = '';
-        visual.style.setProperty('--project-hero-delay', `${Math.min(560, 160 + textTargets.length * 55)}ms`);
+        const visualDelay = compact.matches
+          ? Math.min(460, 140 + textTargets.length * 45)
+          : Math.min(680, 180 + textTargets.length * 65);
+        visual.style.setProperty('--project-hero-delay', `${visualDelay}ms`);
       }
     }
     requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('portfolio-motion-entered')));

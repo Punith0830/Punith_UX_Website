@@ -48,12 +48,15 @@ html{scrollbar-gutter:stable}
 .portfolio-motion-entered .home-hero [data-hero-enter="intro"]{transition-delay:.44s}
 .portfolio-motion-entered .home-hero [data-hero-enter="portrait"]{transition-delay:.5s}
 
-/* Shared project-page opening sequence: the same paced text reveal used on the homepage. */
-.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter]{opacity:0;transform:translate3d(0,24px,0);transition:opacity .78s cubic-bezier(.22,.61,.36,1),transform .86s cubic-bezier(.22,.61,.36,1),clip-path .86s cubic-bezier(.22,.61,.36,1);transition-delay:var(--project-hero-delay,0ms);will-change:opacity,transform,clip-path}
-.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter="title"]{clip-path:inset(0 0 100% 0)}
+/* Shared project-page opening sequence: headline, body copy and support content reveal in readable stages. */
+.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter]{opacity:0;transform:translate3d(0,18px,0);transition:opacity .72s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1),clip-path .8s cubic-bezier(.22,.61,.36,1);transition-delay:var(--project-hero-delay,0ms);will-change:opacity,transform,clip-path}
+.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter="title"]{clip-path:inset(0 0 100% 0);transform:translate3d(0,28px,0);transition-duration:.8s,.92s,.92s}
+.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter="body"]{clip-path:inset(0 0 100% 0);transform:translate3d(0,30px,0);transition-duration:.84s,.96s,.96s}
+.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter="support"]{transform:translate3d(0,20px,0)}
 .portfolio-motion-ready.portfolio-motion-entered .portfolio-opening-hero [data-project-hero-enter]{opacity:1;transform:translate3d(0,0,0);clip-path:inset(0)}
 .portfolio-motion-ready .portfolio-opening-hero [data-project-hero-visual]{opacity:0;transform:translate3d(24px,18px,0) scale(.975);transition:opacity .82s cubic-bezier(.22,.61,.36,1),transform .94s cubic-bezier(.22,.61,.36,1);transition-delay:var(--project-hero-delay,180ms);will-change:opacity,transform}
 .portfolio-motion-ready.portfolio-motion-entered .portfolio-opening-hero [data-project-hero-visual]{opacity:1;transform:translate3d(0,0,0) scale(1)}
+@media(max-width:600px){.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter="title"],.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-enter="body"]{transform:translate3d(0,20px,0)}.portfolio-motion-ready .portfolio-opening-hero [data-project-hero-visual]{transform:translate3d(14px,12px,0) scale(.985)}}
 
 
 @media(min-width:901px) and (prefers-reduced-motion:no-preference){
