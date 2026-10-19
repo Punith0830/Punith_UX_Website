@@ -90,13 +90,34 @@
     update();
   }
 
-  const homeHero = document.querySelector('.home-hero');
-  if (homeHero && !reduced.matches) {
+  const openingHero = document.querySelector('main .hero');
+  if (openingHero && !reduced.matches) {
     root.classList.add('portfolio-motion-ready');
+    if (!openingHero.classList.contains('home-hero')) {
+      openingHero.classList.add('portfolio-opening-hero');
+      const revealSelectors = [
+        '.hero-copy > .hero-logo', '.hero-copy > .client-logo', '.hero-copy > .eyebrow',
+        '.hero-copy > h1', '.hero-copy > .hero-lead', '.hero-copy > .lead', '.hero-copy > .lede',
+        '.hero-copy > .meta', '.hero-copy > .chips', '.hero-copy > .hero-rule',
+        '.hero-copy > .actions', '.hero-copy > .hero-note', '.hero-copy > .hero-facts',
+        '.hero-inner > .eyebrow', '.hero-inner > h1', '.hero-inner > .lead',
+        '.hero-inner > .hero-bottom'
+      ];
+      const textTargets = [...openingHero.querySelectorAll(revealSelectors.join(','))];
+      textTargets.forEach((target, index) => {
+        target.dataset.projectHeroEnter = target.matches('h1') ? 'title' : 'text';
+        target.style.setProperty('--project-hero-delay', `${60 + index * 90}ms`);
+      });
+      const visual = openingHero.querySelector('.hero-media, .demo-stage');
+      if (visual) {
+        visual.dataset.projectHeroVisual = '';
+        visual.style.setProperty('--project-hero-delay', `${Math.min(560, 160 + textTargets.length * 55)}ms`);
+      }
+    }
     requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('portfolio-motion-entered')));
   }
 
-  let targets = [...document.querySelectorAll('.portfolio-reveal')];
+  let targets = [...document.querySelectorAll('.portfolio-reveal')].filter(el => !el.closest('.portfolio-opening-hero'));
   if (!targets.length) {
     const selectors = '.section-head,.hero-copy,.hero-inner,.intro-card,.research-block,.chapter-label,.steps,.flow-card,.check-panel,.lesson,.finish .shell,.agent-card,.skill-group,.layer,.stage,.memory-card,.info-layer,.tree-card,.guardrail,.system-diagram,.pk-contact-inner';
     targets = [...document.querySelectorAll(selectors)].filter(el => !el.parentElement.closest(selectors));
