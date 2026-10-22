@@ -159,6 +159,7 @@
     .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px var(--outline-stroke); }
     .hero-intro { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 2rem; margin-top: clamp(2.5rem, 5vw, 5rem); padding-top: 1.5rem; border-top: 1px solid var(--line); }
     .hero-intro p { margin: 0; color: var(--body); max-width: 42rem; font-size: clamp(1rem, 1.45vw, 1.25rem); }
+    .hero-intro-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 1.35rem; min-width: 0; }
     .location { font-size: .77rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
     .portrait-panel { position: relative; min-height: 560px; overflow: hidden; background: #f0f0f0; }
     .portrait-panel img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: contrast(1.03) saturate(.96); transform: scale(1.02); }
@@ -254,6 +255,11 @@
     .button:hover, .button:focus-visible { color: var(--canvas); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,.25); }
     .button:hover::before, .button:focus-visible::before { transform: scaleX(1); }
     .button:active { transform: translateY(0) scale(.975); }
+    .resume-action { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem 1rem; }
+    .resume-download { gap: .85rem; min-height: 48px; padding: .85rem 1.2rem; }
+    .resume-download [aria-hidden="true"] { font-size: 1.05rem; line-height: 1; transition: transform .3s cubic-bezier(.2,.75,.25,1); }
+    .resume-download:hover [aria-hidden="true"], .resume-download:focus-visible [aria-hidden="true"] { transform: translateY(3px); }
+    .resume-format { color: var(--muted); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .contact-note { margin: .6rem 0 0; color: var(--body); }
     .call-link::after { content: "☎"; }
 
@@ -307,6 +313,7 @@
       .hero-copy { padding-block: 5.5rem 2rem; }
       .hero h1 { font-size: clamp(3.7rem, 17vw, 6.1rem); }
       .hero-intro { grid-template-columns: 1fr; gap: 1rem; }
+      .hero-intro-copy { gap: 1.15rem; }
       .portrait-panel { min-height: 480px; }
       .about-copy { margin-left: 0; }
       .stats { grid-template-columns: 1fr; }
@@ -319,6 +326,11 @@
       .details-grid { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .resume-action { width: 100%; align-items: stretch; flex-direction: column; }
+      .resume-download { width: 100%; }
     }
   </style>
 <style id="portfolio-project-stack">
@@ -395,7 +407,13 @@
               <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
               <p class="location">Coimbatore · India</p>
             </div>
-            <p>I combine proven UX research and design methods with AI-integrated workflows to turn complex requirements into clear, testable product experiences.</p>
+            <div class="hero-intro-copy">
+              <p>I combine proven UX research and design methods with AI-integrated workflows to turn complex requirements into clear, testable product experiences.</p>
+              <div class="resume-action">
+                <a class="button resume-download" href="assets/Punith-Sr.UXdesigner-Resume2026.pdf" download="Punith-Kumar-UX-Design-Resume-2026.pdf" type="application/pdf" aria-describedby="resume-format">Download resume <span aria-hidden="true">↓</span></a>
+                <span class="resume-format" id="resume-format">PDF · 2 pages</span>
+              </div>
+            </div>
           </div>
         </div>
         <figure class="portrait-panel" data-hero-enter="portrait">
